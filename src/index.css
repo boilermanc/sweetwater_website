@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", serif;
+  --font-body: "Libre Baskerville", serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-accent: #3D4B3D; /* Deep Moss */
+  --color-growth: #A8B8A8; /* Soft Sage */
+  --color-ink: #1A1A1A;
+  --color-paper: #FDFCF9;
+  --color-line: rgba(26, 26, 26, 0.05);
+}
+
+@layer base {
+  body {
+    @apply bg-paper text-ink font-sans antialiased selection:bg-growth/30 selection:text-ink;
+  }
+}
+
+/* Elegant Text Mask */
+.text-mask {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: url('https://picsum.photos/seed/leaves/1920/1080');
+  background-size: cover;
+  background-position: center;
+}
+
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.pill-image {
+  border-radius: 9999px;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
