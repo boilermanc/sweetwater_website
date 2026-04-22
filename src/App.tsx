@@ -138,7 +138,7 @@ export default function App() {
             style={{ y: useTransform(scrollYProgress, [0, 1], [0, -400]) }}
             className="absolute top-40 -right-20 w-80 h-[30rem] hidden xl:block opacity-30"
           >
-            <img src="https://picsum.photos/seed/leaf2/800/1200" className="w-full h-full object-cover rounded-full" referrerPolicy="no-referrer" />
+            <img src="/images/tower-hero.jpg" alt="Tower Garden growing fresh greens" className="w-full h-full object-cover rounded-full" />
           </motion.div>
         </div>
 
@@ -195,9 +195,9 @@ export default function App() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
             {[
-              { title: "Tower Garden", img: "tower", desc: "The gold standard in home aeroponics. Grow up to 20 plants in less than 3 square feet." },
-              { title: "Seedling Service", img: "seedling", desc: "Expertly nurtured starter plants delivered to your door, ready for your system." },
-              { title: "Fresh Produce", img: "produce", desc: "Direct from our farm to your table. Nutrient-dense greens harvested at peak vitality." }
+              { title: "Tower Garden", src: "/images/tower-hero.jpg", desc: "The gold standard in home aeroponics. Grow up to 20 plants in less than 3 square feet." },
+              { title: "Seedling Service", src: "https://picsum.photos/seed/seedling/800/1200", desc: "Expertly nurtured starter plants delivered to your door, ready for your system." },
+              { title: "Fresh Produce", src: "https://picsum.photos/seed/produce/800/1200", desc: "Direct from our farm to your table. Nutrient-dense greens harvested at peak vitality." }
             ].map((item, i) => (
               <motion.div 
                 key={i}
@@ -207,9 +207,9 @@ export default function App() {
                 className="group cursor-pointer"
               >
                 <div className="relative aspect-[3/4] overflow-hidden rounded-[2rem] mb-8">
-                  <img 
-                    src={`https://picsum.photos/seed/${item.img}/800/1200`} 
-                    alt={item.title} 
+                  <img
+                    src={item.src}
+                    alt={item.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
                     referrerPolicy="no-referrer"
                   />
