@@ -22,6 +22,7 @@ export default function App() {
     { name: "Home", href: "#home" },
     { name: "Systems", href: "#systems" },
     { name: "Services", href: "#services" },
+    { name: "Clients", href: "#clients" },
     { name: "Workshops", href: "#workshops" },
     { name: "Our Story", href: "#story" },
     { name: "Connect", href: "#connect" },
@@ -264,10 +265,62 @@ export default function App() {
         </div>
       </section>
 
+      {/* Section 03: Clients */}
+      <section id="clients" className="py-40 px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-24">
+            <span className="font-mono text-[10px] uppercase tracking-[0.5em] opacity-40 mb-8 block">03 // Clients</span>
+            <h2 className="text-6xl md:text-8xl font-serif italic mb-8 tracking-tighter">Where We Grow</h2>
+            <p className="max-w-2xl mx-auto text-lg font-body italic text-ink/60 leading-relaxed">
+              We bring living gardens to commercial kitchens, hospitality venues, and public spaces — and tend them weekly so chefs and teams can simply harvest.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="relative aspect-[4/3] overflow-hidden rounded-[2rem]"
+            >
+              <img
+                src="/images/truist-park.jpg"
+                alt="Eight Tower Gardens installed at Truist Park, home of the Atlanta Braves"
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+            <div>
+              <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-growth mb-4 block">Featured Partner</span>
+              <h3 className="text-5xl font-serif mb-2">Truist Park</h3>
+              <p className="font-mono text-xs uppercase tracking-widest opacity-40 mb-8">Atlanta, GA · Home of the Atlanta Braves</p>
+              <p className="text-ink/70 font-body leading-relaxed mb-8">
+                We provide and manage <span className="text-accent font-semibold">eight Tower Gardens</span> used inside the stadium by the Executive Chef. Each week we deliver new plants, clean the towers, check nutrient and water quality, and harvest as needed — so the kitchen always has the freshest greens, growing right where they're served.
+              </p>
+              <ul className="space-y-3 mb-10">
+                {[
+                  "Weekly fresh plant delivery",
+                  "Tower cleaning & maintenance",
+                  "Nutrient & water quality checks",
+                  "On-demand harvesting",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-xs font-mono uppercase tracking-widest text-ink/70">
+                    <Leaf size={14} className="text-growth shrink-0" /> {item}
+                  </li>
+                ))}
+              </ul>
+              <button className="px-10 py-5 bg-accent text-paper rounded-full font-mono text-[10px] uppercase tracking-widest hover:bg-growth transition-colors">
+                Bring This To Your Space
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Section 04: Workshops */}
-      <section id="workshops" className="py-40 px-8">
+      <section id="workshops" className="py-40 px-8 bg-[#F5F5F0]">
         <div className="max-w-7xl mx-auto text-center">
-          <span className="font-mono text-[10px] uppercase tracking-[0.5em] opacity-40 mb-8 block">03 // Workshops</span>
+          <span className="font-mono text-[10px] uppercase tracking-[0.5em] opacity-40 mb-8 block">04 // Workshops</span>
           <h2 className="text-7xl md:text-[10rem] font-serif italic mb-16 tracking-tighter">Grow Good.</h2>
           <div className="relative max-w-4xl mx-auto aspect-video rounded-[3rem] overflow-hidden mb-16">
             <img src="https://picsum.photos/seed/workshop/1200/800" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
@@ -290,7 +343,7 @@ export default function App() {
       <section id="story" className="py-40 px-8 bg-accent text-paper overflow-hidden relative">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-24 items-center">
           <div className="lg:col-span-7">
-            <span className="font-mono text-[10px] uppercase tracking-[0.5em] text-growth mb-8 block">04 // Our Story</span>
+            <span className="font-mono text-[10px] uppercase tracking-[0.5em] text-growth mb-8 block">05 // Our Story</span>
             <h2 className="text-6xl md:text-8xl font-serif italic mb-12 leading-none">The Sweet Life.</h2>
             <div className="space-y-8 text-xl md:text-2xl font-body italic text-paper/70 leading-relaxed max-w-2xl">
               <p>
@@ -324,7 +377,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
             <div>
-              <span className="font-mono text-[10px] uppercase tracking-[0.5em] opacity-40 mb-8 block">05 // Connect</span>
+              <span className="font-mono text-[10px] uppercase tracking-[0.5em] opacity-40 mb-8 block">06 // Connect</span>
               <h2 className="text-7xl font-serif mb-16 italic">Let's Grow.</h2>
               <div className="space-y-12">
                 <div>
