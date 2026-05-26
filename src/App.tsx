@@ -354,7 +354,7 @@ export default function App() {
                 partners: "With Braves Stadium · Green Life Farms Jamaica",
                 cta: "Discuss Your Project",
                 subject: "Commercial Installation",
-                img: "commercial-tower-farm"
+                img: "/images/IMG_7821.JPG"
               },
               {
                 label: "Schools & Programs",
@@ -363,7 +363,7 @@ export default function App() {
                 partners: "STEM curriculum · K–12 partnerships",
                 cta: "Bring It to Your School",
                 subject: "Schools & STEM Programs",
-                img: "school-program-aeroponic"
+                img: "/images/IMG_20230126_165328_383.jpg"
               },
               {
                 label: "Home Growers",
@@ -372,7 +372,7 @@ export default function App() {
                 partners: "Tower Gardens · Seedlings · Workshops",
                 cta: "Start Growing at Home",
                 subject: "Tower Garden Systems",
-                img: "home-tower-garden"
+                img: "/images/IMG20240918103419.jpg"
               }
             ].map((item, i) => (
               <motion.div
@@ -385,10 +385,9 @@ export default function App() {
               >
                 <div className="relative aspect-[3/4] overflow-hidden rounded-[2rem] mb-8">
                   <img
-                    src={`https://picsum.photos/seed/${item.img}/800/1200`}
+                    src={item.img}
                     alt={item.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
-                    referrerPolicy="no-referrer"
                   />
                   <div className="absolute inset-0 bg-accent/20 group-hover:bg-transparent transition-colors duration-500" />
                 </div>
@@ -410,7 +409,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
           <div className="relative">
             <div className="pill-image w-full aspect-[4/5] overflow-hidden">
-              <img src="https://picsum.photos/seed/consulting-greenhouse/1000/1200" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+              <img src="/images/IMG20260403115325.jpg" alt="Sweetwater greenhouse" className="w-full h-full object-cover" />
             </div>
             <div className="absolute -bottom-10 -right-10 w-64 h-64 glass-card rounded-full flex items-center justify-center p-8 text-center">
               <p className="font-serif italic text-lg leading-tight">
@@ -510,12 +509,7 @@ export default function App() {
           <span className="font-mono text-[10px] uppercase tracking-[0.5em] opacity-40 mb-8 block">04 // Workshops</span>
           <h2 className="text-7xl md:text-[10rem] font-serif italic mb-16 tracking-tighter">Grow Good.</h2>
           <div className="relative max-w-4xl mx-auto aspect-video rounded-[3rem] overflow-hidden mb-16">
-            <img src="https://picsum.photos/seed/workshop/1200/800" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-            <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-              <button className="w-24 h-24 rounded-full bg-paper/20 backdrop-blur-md border border-paper/30 flex items-center justify-center hover:scale-110 transition-transform">
-                <div className="w-0 h-0 border-t-[10px] border-t-transparent border-l-[15px] border-l-paper border-b-[10px] border-b-transparent ml-1"></div>
-              </button>
-            </div>
+            <img src="/images/workshop-greenhouse.jpg" alt="Sweetwater workshop in the greenhouse" className="w-full h-full object-cover" />
           </div>
           <p className="max-w-2xl mx-auto text-2xl font-body italic text-ink/60 leading-relaxed mb-12">
             Join us for our Spring 2026 series at the Sweetwater greenhouse in Alpharetta. Learn the science and soul of aeroponic growing.
@@ -553,7 +547,7 @@ export default function App() {
               transition={{ duration: 2 }}
               className="rounded-full aspect-square overflow-hidden border-[20px] border-paper/5"
             >
-              <img src="https://picsum.photos/seed/founders/800/800" className="w-full h-full object-cover grayscale" referrerPolicy="no-referrer" />
+              <img src="/images/IMG_20210427_105856_607.jpg" alt="Sheree and Clint, Sweetwater founders" className="w-full h-full object-cover grayscale" />
             </motion.div>
           </div>
         </div>
