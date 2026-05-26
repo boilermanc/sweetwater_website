@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from "motion/react";
-import { 
-  Leaf, 
+import {
+  Leaf,
   ArrowRight,
   Menu,
   X,
@@ -8,15 +8,54 @@ import {
   Facebook,
   Youtube,
   Linkedin,
-  ChevronDown
+  ChevronDown,
+  Mail,
+  Clock,
+  Plus,
+  Minus
 } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState, useRef, FormEvent } from "react";
+
+const FAQS = [
+  { category: "Getting Started", question: "How does aeroponic growing work?", answer: "Aeroponics grows plants in a fine mist of nutrient-rich water — no soil. Plants get more oxygen at the roots, grow up to 3× faster, and use 95% less water than traditional methods." },
+  { category: "Tower Garden", question: "What's included with a Tower Garden purchase?", answer: "Each Tower Garden comes with the growing system, water pump, timer, starter nutrients, and rockwool growing medium. We also offer optional LED grow light kits and seedling packages to get you started." },
+  { category: "Seedlings", question: "Can I buy seedlings without a system?", answer: "Yes — our seedling program is open to anyone, whether you have a Tower Garden, a traditional garden, or are just experimenting. Seedlings are nurtured in our greenhouse and delivered ready to plant." },
+  { category: "Workshops", question: "When and where are workshops held?", answer: "Our Spring 2026 series runs at AboutFace Farm in Cumming, GA. Workshops typically last 90 minutes and cover everything from setup to harvest. Reserve your spot through the form on the right." },
+  { category: "Consulting", question: "Do you work with restaurants and schools?", answer: "Yes. We've partnered with restaurants like Truist Park and organizations like AboutFace USA on aeroponic installations, plus a number of schools for STEM programs. Reach out and we'll set up a consultation." }
+];
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', subject: 'Tower Garden Systems', message: '' });
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [errorMsg, setErrorMsg] = useState('');
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [0, -200]);
+
+  const handleSubmit = async () => {
+    if (!formData.name || !formData.email || !formData.message) {
+      setStatus('error');
+      setErrorMsg('Please fill in all fields.');
+      return;
+    }
+    setStatus('submitting');
+    setErrorMsg('');
+    try {
+      const res = await fetch('https://n8n.sproutify.app/webhook/suf-contact-2a9e1c7d-83bf-4e12-9d6a-15a4f7e2c891', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      if (!res.ok) throw new Error('Request failed');
+      setStatus('success');
+      setFormData({ name: '', email: '', subject: 'Tower Garden Systems', message: '' });
+    } catch (err) {
+      setStatus('error');
+      setErrorMsg('Something went wrong. Please email info@sweetwaterurbanfarms.com directly.');
+    }
+  };
 
   const navLinks = [
     { name: "Home", href: "#home" },
@@ -375,48 +414,147 @@ export default function App() {
       {/* Section 06: Connect */}
       <section id="connect" className="py-40 px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
+          <div className="text-center max-w-3xl mx-auto mb-24">
+            <span className="font-mono text-[10px] uppercase tracking-[0.5em] opacity-40 mb-8 block">05 // Connect</span>
+            <h2 className="text-6xl md:text-8xl font-serif leading-none tracking-tight">
+              How can we help<br />
+              <span className="italic text-growth">you grow?</span>
+            </h2>
+            <p className="font-body italic text-ink/60 text-lg md:text-xl max-w-xl mx-auto mt-8">
+              Whether you're new to aeroponics, planning a workshop, or sourcing fresh produce — we'd love to hear from you.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+            {/* LEFT COLUMN — FAQ */}
             <div>
-              <span className="font-mono text-[10px] uppercase tracking-[0.5em] opacity-40 mb-8 block">06 // Connect</span>
-              <h2 className="text-7xl font-serif mb-16 italic">Let's Grow.</h2>
-              <div className="space-y-12">
-                <div>
-                  <p className="font-mono text-[9px] uppercase tracking-widest opacity-40 mb-4">Inquiries</p>
-                  <p className="text-2xl font-serif italic hover:text-growth transition-colors cursor-pointer underline underline-offset-8 decoration-ink/10">
-                    info@sweetwaterurbanfarms.com
-                  </p>
+              <span className="font-mono text-[9px] uppercase tracking-widest opacity-40 mb-3 block">Frequently Asked</span>
+              <h3 className="text-4xl font-serif italic mb-10 leading-none">Common questions.</h3>
+
+              {FAQS.map((faq, i) => (
+                <div
+                  key={i}
+                  className={openFaq === i
+                    ? "bg-paper border border-accent rounded-[2rem] p-8 mb-3 transition-all"
+                    : "bg-transparent border border-ink/10 rounded-[2rem] p-6 mb-3 transition-all hover:border-ink/20"
+                  }
+                >
+                  <button
+                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                    className="w-full flex justify-between items-start gap-4 text-left"
+                  >
+                    <div>
+                      <span className={`font-mono text-[9px] uppercase tracking-[0.25em] mb-1.5 block ${openFaq === i ? 'text-accent' : 'opacity-40'}`}>{faq.category}</span>
+                      <p className={`font-serif italic text-lg md:text-xl ${openFaq === i ? 'text-accent' : 'text-ink'}`}>{faq.question}</p>
+                    </div>
+                    <div className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 transition-all ${openFaq === i ? 'bg-accent text-paper' : 'bg-ink/5 text-ink/40'}`}>
+                      {openFaq === i ? <Minus size={14} /> : <Plus size={14} />}
+                    </div>
+                  </button>
+                  {openFaq === i && (
+                    <p className="font-body text-sm leading-relaxed text-ink/70 mt-4 pt-4 border-t border-accent/15">{faq.answer}</p>
+                  )}
                 </div>
-                <div>
-                  <p className="font-mono text-[9px] uppercase tracking-widest opacity-40 mb-4">Phone</p>
-                  <p className="text-2xl font-serif italic">770.678.6552</p>
-                </div>
-                <div className="flex gap-8 pt-8">
-                  {[Instagram, Facebook, Youtube, Linkedin].map((Icon, i) => (
-                    <a key={i} href="#" className="w-12 h-12 rounded-full border border-ink/10 flex items-center justify-center hover:bg-accent hover:text-paper transition-all">
-                      <Icon size={18} strokeWidth={1.5} />
-                    </a>
-                  ))}
-                </div>
+              ))}
+
+              <div className="bg-growth/10 rounded-[1.5rem] p-8 mt-8 text-center">
+                <p className="font-serif italic text-lg leading-relaxed text-ink/70">"To forget how to dig the earth and tend the soil is to forget ourselves."</p>
+                <p className="font-mono text-[8px] uppercase tracking-[0.3em] opacity-40 mt-3">— Mahatma Gandhi</p>
               </div>
             </div>
-            <div className="bg-[#F5F5F0] p-12 md:p-20 rounded-[3rem]">
-              <form className="space-y-12">
-                <div className="space-y-2">
+
+            {/* RIGHT COLUMN — Form + info cards */}
+            <div>
+              <div className="bg-[#F5F5F0] p-10 md:p-12 rounded-[3rem]">
+                <span className="font-mono text-[9px] uppercase tracking-widest opacity-40 mb-2 block">Send a Note</span>
+                <h3 className="text-4xl font-serif italic mb-2 leading-none">Let's grow.</h3>
+                <p className="font-body italic text-sm text-ink/55 mb-10">We typically respond within 1–2 days.</p>
+
+                <div className="space-y-2 mb-8">
                   <label className="font-mono text-[9px] uppercase tracking-widest opacity-40">Name</label>
-                  <input type="text" className="w-full bg-transparent border-b border-ink/10 py-4 font-serif italic text-2xl outline-none focus:border-accent transition-colors" placeholder="Your Name" />
+                  <input
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    placeholder="Your name"
+                    className="w-full bg-transparent border-b border-ink/10 py-3 font-serif italic text-xl outline-none focus:border-accent transition-colors"
+                  />
                 </div>
-                <div className="space-y-2">
+
+                <div className="space-y-2 mb-8">
                   <label className="font-mono text-[9px] uppercase tracking-widest opacity-40">Email</label>
-                  <input type="email" className="w-full bg-transparent border-b border-ink/10 py-4 font-serif italic text-2xl outline-none focus:border-accent transition-colors" placeholder="hello@example.com" />
+                  <input
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    placeholder="hello@example.com"
+                    className="w-full bg-transparent border-b border-ink/10 py-3 font-serif italic text-xl outline-none focus:border-accent transition-colors"
+                  />
                 </div>
-                <div className="space-y-2">
+
+                <div className="space-y-2 mb-8">
+                  <label className="font-mono text-[9px] uppercase tracking-widest opacity-40">I'm interested in</label>
+                  <select
+                    value={formData.subject}
+                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                    className="w-full bg-transparent border-b border-ink/10 py-3 font-serif italic text-xl text-accent outline-none focus:border-accent transition-colors cursor-pointer appearance-none"
+                  >
+                    <option>Tower Garden Systems</option>
+                    <option>Fresh Produce</option>
+                    <option>Seedlings</option>
+                    <option>Farm Consulting</option>
+                    <option>Events & Workshops</option>
+                    <option>Restaurant Partnership</option>
+                    <option>Community Partnership</option>
+                    <option>School Partnership</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+
+                <div className="space-y-2 mb-8">
                   <label className="font-mono text-[9px] uppercase tracking-widest opacity-40">Message</label>
-                  <textarea rows={3} className="w-full bg-transparent border-b border-ink/10 py-4 font-serif italic text-2xl outline-none focus:border-accent transition-colors resize-none" placeholder="How can we help?"></textarea>
+                  <textarea
+                    rows={3}
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    placeholder="How can we help?"
+                    className="w-full bg-transparent border-b border-ink/10 py-3 font-serif italic text-xl outline-none focus:border-accent transition-colors resize-none"
+                  />
                 </div>
-                <button className="w-full py-6 bg-accent text-paper rounded-full font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-growth transition-colors">
-                  Send Message
+
+                <button
+                  type="button"
+                  onClick={handleSubmit}
+                  disabled={status === 'submitting'}
+                  className="w-full py-5 bg-accent text-paper rounded-full font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-growth transition-colors disabled:opacity-50"
+                >
+                  {status === 'submitting' ? 'Sending…' : 'Send Message'}
                 </button>
-              </form>
+
+                {status === 'success' && (
+                  <p className="text-center font-serif italic text-base text-accent mt-5">Thank you. We'll be in touch soon.</p>
+                )}
+                {status === 'error' && (
+                  <p className="text-center font-serif italic text-sm text-ink/60 mt-5">{errorMsg}</p>
+                )}
+              </div>
+
+              <div className="grid grid-cols-2 gap-3 mt-4">
+                <div className="bg-paper border border-ink/5 rounded-[1.5rem] p-6">
+                  <div className="w-9 h-9 rounded-full bg-accent/8 flex items-center justify-center mb-3">
+                    <Mail size={15} className="text-accent" />
+                  </div>
+                  <p className="font-mono text-[8px] uppercase tracking-[0.25em] opacity-40 mb-1">Email</p>
+                  <a href="mailto:info@sweetwaterurbanfarms.com" className="font-serif italic text-sm text-accent break-words">info@sweetwaterurbanfarms.com</a>
+                </div>
+                <div className="bg-paper border border-ink/5 rounded-[1.5rem] p-6">
+                  <div className="w-9 h-9 rounded-full bg-growth/30 flex items-center justify-center mb-3">
+                    <Clock size={15} className="text-accent" />
+                  </div>
+                  <p className="font-mono text-[8px] uppercase tracking-[0.25em] opacity-40 mb-1">Response</p>
+                  <p className="font-serif italic text-sm">Under 48 hours</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
