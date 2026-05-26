@@ -20,8 +20,8 @@ const FAQS = [
   { category: "Getting Started", question: "How does aeroponic growing work?", answer: "Aeroponics grows plants in a fine mist of nutrient-rich water — no soil. Plants get more oxygen at the roots, grow up to 3× faster, and use 95% less water than traditional methods." },
   { category: "Tower Garden", question: "What's included with a Tower Garden purchase?", answer: "Each Tower Garden comes with the growing system, water pump, timer, starter nutrients, and rockwool growing medium. We also offer optional LED grow light kits and seedling packages to get you started." },
   { category: "Seedlings", question: "Can I buy seedlings without a system?", answer: "Yes — our seedling program is open to anyone, whether you have a Tower Garden, a traditional garden, or are just experimenting. Seedlings are nurtured in our greenhouse and delivered ready to plant." },
-  { category: "Workshops", question: "When and where are workshops held?", answer: "Our Spring 2026 series runs at AboutFace Farm in Cumming, GA. Workshops typically last 90 minutes and cover everything from setup to harvest. Reserve your spot through the form on the right." },
-  { category: "Consulting", question: "Do you work with restaurants and schools?", answer: "Yes. We've partnered with restaurants like Truist Park and organizations like AboutFace USA on aeroponic installations, plus a number of schools for STEM programs. Reach out and we'll set up a consultation." }
+  { category: "Workshops", question: "When and where are workshops held?", answer: "Our Spring 2026 series runs at the Sweetwater greenhouse in Alpharetta, GA. Workshops typically last 90 minutes and cover everything from setup to harvest. Reserve your spot through the form on the right." },
+  { category: "Consulting", question: "Do you work with restaurants and schools?", answer: "Yes. We've partnered with venues like Braves Stadium and international Tower Farms like Green Life Farms Jamaica, plus a number of schools for STEM programs. Reach out and we'll set up a consultation." }
 ];
 
 export default function App() {
@@ -181,8 +181,6 @@ export default function App() {
           <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-2">
             <span className="font-serif italic text-base md:text-lg text-paper/80">Braves Stadium</span>
             <span className="text-paper/30 text-xs">•</span>
-            <span className="font-serif italic text-base md:text-lg text-paper/80">AboutFace USA</span>
-            <span className="text-paper/30 text-xs">•</span>
             <span className="font-serif italic text-base md:text-lg text-paper/80">Green Life Farms Jamaica</span>
             <span className="text-paper/30 text-xs">•</span>
             <span className="font-serif italic text-base md:text-lg text-paper/60">Sproutify</span>
@@ -259,7 +257,7 @@ export default function App() {
                 label: "Schools & Programs",
                 title: "STEM curriculum that grows.",
                 desc: "Aeroponic systems and hands-on curriculum for K–12, after-school programs, and community education. Students learn biology, chemistry, and sustainability by doing.",
-                partners: "With AboutFace USA",
+                partners: "STEM curriculum · K–12 partnerships",
                 cta: "Bring It to Your School",
                 subject: "Schools & STEM Programs",
                 img: "school-program-aeroponic"
@@ -309,34 +307,43 @@ export default function App() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
           <div className="relative">
             <div className="pill-image w-full aspect-[4/5] overflow-hidden">
-              <img src="https://picsum.photos/seed/community/1000/1200" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+              <img src="https://picsum.photos/seed/consulting-greenhouse/1000/1200" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
             </div>
             <div className="absolute -bottom-10 -right-10 w-64 h-64 glass-card rounded-full flex items-center justify-center p-8 text-center">
               <p className="font-serif italic text-lg leading-tight">
-                "Integrating urban agriculture into the fabric of daily life."
+                From Braves Stadium to a Tower Farm in Jamaica — every project begins with a conversation.
               </p>
             </div>
           </div>
+
           <div>
-            <span className="font-mono text-[10px] uppercase tracking-[0.5em] opacity-40 mb-8 block">02 // Services</span>
-            <h2 className="text-6xl font-serif mb-12 leading-tight">Professional <br />Consulting</h2>
-            <div className="space-y-12">
+            <span className="font-mono text-[10px] uppercase tracking-[0.5em] opacity-40 mb-8 block">02 // Process</span>
+            <h2 className="text-6xl md:text-7xl font-serif mb-16 leading-tight">
+              How we<br /><span className="italic text-growth">work.</span>
+            </h2>
+
+            <div className="space-y-10">
               {[
-                { title: "Mixed Use Development", desc: "Designing edible landscapes for modern residential and commercial projects." },
-                { title: "Educational Programs", desc: "Hands-on STEM learning modules for schools and community centers." },
-                { title: "Commercial Maintenance", desc: "Full-service management for large-scale aeroponic installations." }
-              ].map((service, i) => (
-                <div key={i} className="group">
-                  <h4 className="text-xl font-bold mb-2 flex items-center gap-4">
-                    <span className="text-growth font-mono text-xs">0{i+1}</span>
-                    {service.title}
-                  </h4>
-                  <p className="text-ink/60 text-sm max-w-md leading-relaxed">{service.desc}</p>
+                { title: "Discover", desc: "We listen first. Site walk-through, audience needs, growing goals. We learn what the food has to do — feed a stadium, anchor a science program, or fit a kitchen counter." },
+                { title: "Design", desc: "Aeroponic systems engineered to your space and harvest targets. From single Tower Gardens to multi-hundred-tower commercial installs, every design accounts for water, light, power, and labor." },
+                { title: "Build", desc: "Installation by our team or in partnership with your contractors. Calibration, seedling stocking, and operator training are part of every install." },
+                { title: "Support", desc: "Ongoing remote monitoring through Sproutify, regular check-ins, seasonal seedling refreshes, and on-call troubleshooting. The system is the start, not the end." }
+              ].map((step, i) => (
+                <div key={i} className="flex gap-6 group">
+                  <span className="text-growth font-mono text-xs flex-shrink-0 pt-2 tracking-widest">0{i+1}</span>
+                  <div>
+                    <h4 className="text-2xl font-serif italic mb-2 leading-none">{step.title}</h4>
+                    <p className="text-ink/60 text-base leading-relaxed max-w-md">{step.desc}</p>
+                  </div>
                 </div>
               ))}
             </div>
-            <button className="mt-16 px-10 py-5 bg-accent text-paper rounded-full font-mono text-[10px] uppercase tracking-widest hover:bg-growth transition-colors">
-              Request a Consultation
+
+            <button
+              onClick={() => setInquiryAndScroll('Commercial Installation')}
+              className="mt-16 px-10 py-5 bg-accent text-paper rounded-full font-mono text-[10px] uppercase tracking-widest hover:bg-growth transition-colors"
+            >
+              Start a Project
             </button>
           </div>
         </div>
@@ -408,7 +415,7 @@ export default function App() {
             </div>
           </div>
           <p className="max-w-2xl mx-auto text-2xl font-body italic text-ink/60 leading-relaxed mb-12">
-            Join us for our Spring 2026 series at AboutFace Farm. Learn the science and soul of aeroponic growing.
+            Join us for our Spring 2026 series at the Sweetwater greenhouse in Alpharetta. Learn the science and soul of aeroponic growing.
           </p>
           <button className="px-12 py-6 border border-accent text-accent rounded-full font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-accent hover:text-paper transition-all">
             Reserve Your Space
