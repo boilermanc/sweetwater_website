@@ -24,6 +24,102 @@ const FAQS = [
   { category: "Consulting", question: "Do you work with restaurants and schools?", answer: "Yes. We've partnered with venues like Braves Stadium and international Tower Farms like Green Life Farms Jamaica, plus a number of schools for STEM programs. Reach out and we'll set up a consultation." }
 ];
 
+function PrivacyContent() {
+  return (
+    <article className="pt-40 pb-32 px-8 max-w-3xl mx-auto">
+      <span className="font-mono text-[10px] uppercase tracking-[0.5em] opacity-40 mb-6 block">Legal</span>
+      <h1 className="text-5xl md:text-6xl font-serif mb-4 leading-none">Privacy <span className="italic text-growth">Policy.</span></h1>
+      <p className="font-mono text-[10px] uppercase tracking-widest opacity-40 mb-16">Last updated: May 26, 2026</p>
+
+      <div className="space-y-12 font-body text-base leading-relaxed text-ink/80">
+        <p>Sweetwater Urban Farms ("we," "us," "our") operates sweetwaterurbanfarms.com (the "Site"). This page explains what information we collect and how we use it.</p>
+
+        <section>
+          <h2 className="text-2xl font-serif italic mb-4 text-ink">Information we collect</h2>
+          <p>When you fill out the contact form on the Site, we collect your name, email address, the inquiry type you selected, and the message you wrote. We collect this information so we can respond to you.</p>
+          <p className="mt-4">We do not currently use cookies, tracking pixels, or third-party analytics. If we add analytics in the future, this policy will be updated.</p>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-serif italic mb-4 text-ink">How we use your information</h2>
+          <p>Information you submit through the contact form is used only to respond to your inquiry. We do not sell, rent, or share it with third parties for marketing purposes.</p>
+          <p className="mt-4">Form submissions are processed through our workflow automation tool (n8n, self-hosted) and delivered to our team via email (Resend) and Slack. These services receive your message in transit but do not use your information for their own purposes.</p>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-serif italic mb-4 text-ink">Your rights</h2>
+          <p>You can request that we delete information you've submitted by emailing us at <a href="mailto:info@sweetwaterurbanfarms.com" className="text-accent underline underline-offset-4 decoration-accent/30">info@sweetwaterurbanfarms.com</a>. We'll respond within a reasonable timeframe.</p>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-serif italic mb-4 text-ink">Cloudflare and hosting</h2>
+          <p>Our website is delivered through Cloudflare, a content delivery network. Cloudflare may automatically log basic technical information about your visit (IP address, browser type, page requested) for security and performance purposes. See <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer" className="text-accent underline underline-offset-4 decoration-accent/30">Cloudflare's privacy policy</a> for details.</p>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-serif italic mb-4 text-ink">Changes to this policy</h2>
+          <p>If we make material changes, we'll update the "Last updated" date at the top of this page.</p>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-serif italic mb-4 text-ink">Contact</h2>
+          <p>Questions about this policy? Email <a href="mailto:info@sweetwaterurbanfarms.com" className="text-accent underline underline-offset-4 decoration-accent/30">info@sweetwaterurbanfarms.com</a>.</p>
+        </section>
+      </div>
+    </article>
+  );
+}
+
+function TermsContent() {
+  return (
+    <article className="pt-40 pb-32 px-8 max-w-3xl mx-auto">
+      <span className="font-mono text-[10px] uppercase tracking-[0.5em] opacity-40 mb-6 block">Legal</span>
+      <h1 className="text-5xl md:text-6xl font-serif mb-4 leading-none">Terms of <span className="italic text-growth">Service.</span></h1>
+      <p className="font-mono text-[10px] uppercase tracking-widest opacity-40 mb-16">Last updated: May 26, 2026</p>
+
+      <div className="space-y-12 font-body text-base leading-relaxed text-ink/80">
+        <p>By using sweetwaterurbanfarms.com (the "Site"), you agree to these terms. If you don't agree, please don't use the Site.</p>
+
+        <section>
+          <h2 className="text-2xl font-serif italic mb-4 text-ink">About us</h2>
+          <p>Sweetwater Urban Farms is a consulting and aeroponic services business based in Alpharetta, Georgia. The Site is an information resource and contact channel — we do not sell products or services directly through it. Project engagements begin via consultation.</p>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-serif italic mb-4 text-ink">Use of the Site</h2>
+          <p>The Site is provided "as is" for informational purposes. Information on the Site (system specifications, growing claims, partner references) is accurate to the best of our knowledge but may change. Specific commitments to your project will be made in a signed proposal, not by what you read here.</p>
+          <p className="mt-4">You may not use the Site to scrape, copy, or republish content for commercial purposes without permission; submit false or misleading information through the contact form; or attempt to interfere with the Site's operation.</p>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-serif italic mb-4 text-ink">Intellectual property</h2>
+          <p>All content on the Site (text, images, logos, brand marks) is owned by Sweetwater Urban Farms or used with permission. Tower Garden® is a registered trademark of its respective owner; we are an authorized partner. The Sproutify name and platform are referenced as an integrated technology partner.</p>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-serif italic mb-4 text-ink">Limitation of liability</h2>
+          <p>We make no warranties beyond what is required by law. To the extent allowed by law, Sweetwater Urban Farms is not liable for indirect, incidental, or consequential damages arising from your use of the Site or reliance on its information.</p>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-serif italic mb-4 text-ink">Governing law</h2>
+          <p>These terms are governed by the laws of the State of Georgia, USA. Any dispute will be handled in courts located in Fulton or Forsyth County, Georgia.</p>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-serif italic mb-4 text-ink">Changes</h2>
+          <p>We may update these terms. The "Last updated" date will reflect the change. Continued use of the Site after an update means you accept the new terms.</p>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-serif italic mb-4 text-ink">Contact</h2>
+          <p>Questions about these terms? Email <a href="mailto:info@sweetwaterurbanfarms.com" className="text-accent underline underline-offset-4 decoration-accent/30">info@sweetwaterurbanfarms.com</a>.</p>
+        </section>
+      </div>
+    </article>
+  );
+}
+
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', subject: 'Tower Garden Systems', message: '' });
@@ -31,6 +127,7 @@ export default function App() {
   const [errorMsg, setErrorMsg] = useState('');
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = typeof window !== 'undefined' ? window.location.pathname : '/';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -67,20 +164,21 @@ export default function App() {
   };
 
   const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "Systems", href: "#systems" },
-    { name: "Services", href: "#services" },
-    { name: "Clients", href: "#clients" },
-    { name: "Workshops", href: "#workshops" },
-    { name: "Our Story", href: "#story" },
-    { name: "Connect", href: "#connect" },
+    { name: "Home", href: "/#home" },
+    { name: "Systems", href: "/#systems" },
+    { name: "Services", href: "/#services" },
+    { name: "Clients", href: "/#clients" },
+    { name: "Workshops", href: "/#workshops" },
+    { name: "Our Story", href: "/#story" },
+    { name: "Connect", href: "/#connect" },
   ];
 
   return (
     <div className="min-h-screen bg-paper text-ink font-sans selection:bg-growth/30 overflow-x-hidden">
       {/* Minimal Navigation */}
       <nav className={`fixed top-0 w-full z-50 px-8 py-8 flex justify-between items-center pointer-events-none transition-colors duration-300 ${scrolled ? 'bg-paper/85 backdrop-blur-md' : ''}`}>
-        <motion.div
+        <motion.a
+          href="/"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           className="flex items-center gap-3 pointer-events-auto group cursor-pointer"
@@ -89,7 +187,7 @@ export default function App() {
             <Leaf className="text-paper w-4 h-4" />
           </div>
           <span className={`font-mono text-[10px] font-bold tracking-[0.3em] uppercase transition-colors duration-300 ${scrolled ? 'text-ink' : 'text-paper'}`}>Sweetwater</span>
-        </motion.div>
+        </motion.a>
 
         <div className="hidden md:flex items-center gap-12 pointer-events-auto">
           {navLinks.slice(1, 5).map((link) => (
@@ -105,8 +203,8 @@ export default function App() {
         </div>
 
         <div className="flex items-center gap-8 pointer-events-auto">
-          <button className={`hidden lg:block font-mono text-[9px] font-bold uppercase tracking-[0.2em] border px-6 py-2.5 rounded-full transition-all ${scrolled ? 'border-ink/10 text-ink hover:bg-ink hover:text-paper' : 'border-paper/30 text-paper hover:bg-paper hover:text-ink'}`}>
-            Join the Farm
+          <button onClick={() => document.getElementById('connect')?.scrollIntoView({ behavior: 'smooth' })} className={`hidden lg:block font-mono text-[9px] font-bold uppercase tracking-[0.2em] px-6 py-2.5 rounded-full transition-all ${scrolled ? 'border border-ink/10 text-ink hover:bg-ink hover:text-paper' : 'border border-paper/30 text-paper hover:bg-paper hover:text-ink'}`}>
+            Get in Touch
           </button>
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -145,6 +243,9 @@ export default function App() {
         </motion.div>
       )}
 
+      {pathname === '/privacy' ? <PrivacyContent />
+       : pathname === '/terms' ? <TermsContent />
+       : <>
       {/* Hero Section */}
       <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* BACKGROUND — placeholder for future video loop. When video is ready,
@@ -417,7 +518,7 @@ export default function App() {
           <p className="max-w-2xl mx-auto text-2xl font-body italic text-ink/60 leading-relaxed mb-12">
             Join us for our Spring 2026 series at the Sweetwater greenhouse in Alpharetta. Learn the science and soul of aeroponic growing.
           </p>
-          <button className="px-12 py-6 border border-accent text-accent rounded-full font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-accent hover:text-paper transition-all">
+          <button onClick={() => setInquiryAndScroll('Workshops')} className="px-12 py-6 border border-accent text-accent rounded-full font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-accent hover:text-paper transition-all">
             Reserve Your Space
           </button>
         </div>
@@ -602,25 +703,50 @@ export default function App() {
           </div>
         </div>
       </section>
+       </>}
 
       {/* Footer */}
-      <footer className="py-20 px-8 border-t border-ink/5">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
-          <div className="flex items-center gap-4">
-            <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center">
-              <Leaf className="text-paper w-5 h-5" />
+      <footer className="py-16 px-8 border-t border-ink/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12 items-center">
+            <div className="flex items-center gap-4 justify-center md:justify-start">
+              <a href="/" className="flex items-center gap-4">
+                <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center">
+                  <Leaf className="text-paper w-5 h-5" />
+                </div>
+                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.4em]">Sweetwater</span>
+              </a>
             </div>
-            <span className="font-mono text-[11px] font-bold uppercase tracking-[0.4em]">Sweetwater</span>
-          </div>
-          
-          <p className="font-mono text-[9px] opacity-30 uppercase tracking-[0.2em]">
-            © 2026 Sweetwater Urban Farms // All Rights Reserved
-          </p>
 
-          <div className="flex gap-12 font-mono text-[9px] opacity-30 uppercase tracking-[0.2em]">
-            <a href="#" className="hover:opacity-100 transition-opacity">Privacy</a>
-            <a href="#" className="hover:opacity-100 transition-opacity">Terms</a>
+            <div className="flex flex-col items-center gap-5">
+              <div className="flex items-center gap-3 flex-wrap justify-center">
+                <a href="mailto:info@sweetwaterurbanfarms.com" className="font-serif italic text-sm text-ink/60 hover:text-accent transition-colors">info@sweetwaterurbanfarms.com</a>
+                <span className="text-ink/20">·</span>
+                <a href="tel:7706786552" className="font-serif italic text-sm text-ink/60 hover:text-accent transition-colors">770.678.6552</a>
+              </div>
+              <div className="flex gap-3">
+                {[
+                  { Icon: Instagram, href: "https://www.instagram.com/sweetwaterurbanfarms", label: "Instagram" },
+                  { Icon: Facebook, href: "https://www.facebook.com/sweetwaterurbanfarms", label: "Facebook" },
+                  { Icon: Youtube, href: "https://www.youtube.com/@sweetwaterurbanfarms", label: "YouTube" },
+                  { Icon: Linkedin, href: "https://www.linkedin.com/company/sweetwater-urban-farms", label: "LinkedIn" }
+                ].map(({ Icon, href, label }) => (
+                  <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="w-9 h-9 rounded-full border border-ink/10 flex items-center justify-center hover:bg-accent hover:text-paper hover:border-accent transition-all">
+                    <Icon size={14} strokeWidth={1.5} />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex flex-col items-center md:items-end gap-3 font-mono text-[9px] uppercase tracking-[0.25em]">
+              <a href="/privacy" className="opacity-40 hover:opacity-100 transition-opacity">Privacy</a>
+              <a href="/terms" className="opacity-40 hover:opacity-100 transition-opacity">Terms</a>
+            </div>
           </div>
+
+          <p className="font-mono text-[9px] opacity-30 uppercase tracking-[0.2em] text-center pt-8 border-t border-ink/5">
+            © 2026 Sweetwater Urban Farms · All rights reserved
+          </p>
         </div>
       </footer>
     </div>
