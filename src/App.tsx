@@ -61,6 +61,11 @@ export default function App() {
     }
   };
 
+  const setInquiryAndScroll = (subject: string) => {
+    setFormData(prev => ({ ...prev, subject }));
+    document.getElementById('connect')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   const navLinks = [
     { name: "Home", href: "#home" },
     { name: "Systems", href: "#systems" },
@@ -227,44 +232,71 @@ export default function App() {
       <section id="systems" className="py-40 px-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
-            <div className="max-w-xl">
-              <span className="font-mono text-[10px] uppercase tracking-[0.5em] opacity-40 mb-6 block">01 // Systems</span>
+            <div className="max-w-2xl">
+              <span className="font-mono text-[10px] uppercase tracking-[0.5em] opacity-40 mb-6 block">01 // What We Do</span>
               <h2 className="text-6xl md:text-8xl font-serif leading-none tracking-tighter">
-                Residential <br />
-                <span className="italic text-growth">Solutions</span>
+                From <span className="italic text-growth">Jamaica</span><br />
+                to your kitchen.
               </h2>
             </div>
             <p className="max-w-xs text-ink/60 font-body italic">
-              Professional-grade aeroponic systems designed for the modern home.
+              Three worlds we work in — international Tower Farms, schools, and home growers — all built on one aeroponic foundation.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
             {[
-              { title: "Tower Garden", src: "/images/tower-hero.jpg", desc: "The gold standard in home aeroponics. Grow up to 20 plants in less than 3 square feet." },
-              { title: "Seedling Service", src: "https://picsum.photos/seed/seedling/800/1200", desc: "Expertly nurtured starter plants delivered to your door, ready for your system." },
-              { title: "Fresh Produce", src: "https://picsum.photos/seed/produce/800/1200", desc: "Direct from our farm to your table. Nutrient-dense greens harvested at peak vitality." }
+              {
+                label: "Commercial",
+                title: "From stadiums to global Tower Farms",
+                desc: "We design, build, and support commercial-scale aeroponic installations — from local restaurants and stadiums to international Tower Farms producing thousands of pounds of greens a week.",
+                partners: "With Braves Stadium · Green Life Farms Jamaica",
+                cta: "Discuss Your Project",
+                subject: "Commercial Installation",
+                img: "commercial-tower-farm"
+              },
+              {
+                label: "Schools & Programs",
+                title: "STEM curriculum that grows.",
+                desc: "Aeroponic systems and hands-on curriculum for K–12, after-school programs, and community education. Students learn biology, chemistry, and sustainability by doing.",
+                partners: "With AboutFace USA",
+                cta: "Bring It to Your School",
+                subject: "Schools & STEM Programs",
+                img: "school-program-aeroponic"
+              },
+              {
+                label: "Home Growers",
+                title: "Tower Gardens for everyone.",
+                desc: "The same aeroponic technology that powers our commercial work, scaled for your kitchen, deck, or backyard. Includes seedlings, ongoing support, and a community of growers.",
+                partners: "Tower Gardens · Seedlings · Workshops",
+                cta: "Start Growing at Home",
+                subject: "Tower Garden Systems",
+                img: "home-tower-garden"
+              }
             ].map((item, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.2 }}
+                transition={{ delay: i * 0.15 }}
                 className="group cursor-pointer"
+                onClick={() => setInquiryAndScroll(item.subject)}
               >
                 <div className="relative aspect-[3/4] overflow-hidden rounded-[2rem] mb-8">
                   <img
-                    src={item.src}
+                    src={`https://picsum.photos/seed/${item.img}/800/1200`}
                     alt={item.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute inset-0 bg-accent/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                  <div className="absolute inset-0 bg-accent/20 group-hover:bg-transparent transition-colors duration-500" />
                 </div>
-                <h3 className="text-3xl font-serif italic mb-4">{item.title}</h3>
-                <p className="text-ink/60 font-body text-sm leading-relaxed mb-6">{item.desc}</p>
-                <div className="flex items-center gap-2 font-mono text-[9px] uppercase tracking-widest group-hover:gap-4 transition-all">
-                  View Details <ArrowRight size={12} />
+                <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-accent block mb-3">{item.label}</span>
+                <h3 className="text-3xl font-serif italic mb-4 leading-tight">{item.title}</h3>
+                <p className="text-ink/60 font-body text-sm leading-relaxed mb-4">{item.desc}</p>
+                <p className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-40 mb-6">{item.partners}</p>
+                <div className="flex items-center gap-2 font-mono text-[9px] uppercase tracking-widest text-accent group-hover:gap-4 transition-all">
+                  {item.cta} <ArrowRight size={12} />
                 </div>
               </motion.div>
             ))}
@@ -505,14 +537,12 @@ export default function App() {
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                     className="w-full bg-transparent border-b border-ink/10 py-3 font-serif italic text-xl text-accent outline-none focus:border-accent transition-colors cursor-pointer appearance-none"
                   >
+                    <option>Commercial Installation</option>
                     <option>Tower Garden Systems</option>
-                    <option>Fresh Produce</option>
-                    <option>Seedlings</option>
-                    <option>Farm Consulting</option>
-                    <option>Events & Workshops</option>
+                    <option>Schools & STEM Programs</option>
                     <option>Restaurant Partnership</option>
-                    <option>Community Partnership</option>
-                    <option>School Partnership</option>
+                    <option>Seedlings</option>
+                    <option>Workshops</option>
                     <option>Other</option>
                   </select>
                 </div>
