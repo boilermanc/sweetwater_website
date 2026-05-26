@@ -269,7 +269,7 @@ export default function App() {
             We design, build,<br/>and <span className="italic text-growth">grow.</span>
           </h1>
           <p className="font-body italic text-lg md:text-xl text-paper/75 max-w-xl mx-auto mb-12 leading-relaxed">
-            Aeroponic installations and ongoing support for restaurants, schools, and home growers.
+            Designing, building, and supporting aeroponic systems for commercial farms, schools, and home growers.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             <a href="#connect" className="px-8 py-4 bg-paper text-ink rounded-full font-mono text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-transform">
