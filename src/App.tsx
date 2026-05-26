@@ -21,7 +21,7 @@ const FAQS = [
   { category: "Getting Started", question: "How does aeroponic growing work?", answer: "Aeroponics grows plants in a fine mist of nutrient-rich water — no soil. Plants get more oxygen at the roots, grow up to 3× faster, and use 95% less water than traditional methods." },
   { category: "Tower Garden", question: "What's included with a Tower Garden purchase?", answer: "Each Tower Garden comes with the growing system, water pump, timer, starter nutrients, and rockwool growing medium. We also offer optional LED grow light kits and seedling packages to get you started." },
   { category: "Seedlings", question: "Can I buy seedlings without a system?", answer: "Yes — our seedling program is open to anyone, whether you have a Tower Garden, a traditional garden, or are just experimenting. Seedlings are nurtured in our greenhouse and delivered ready to plant." },
-  { category: "Workshops", question: "When and where are workshops held?", answer: "Our Spring 2026 series runs at the Sweetwater greenhouse in Alpharetta, GA. Workshops typically last 90 minutes and cover everything from setup to harvest. Reserve your spot through the form on the right." },
+  { category: "Workshops", question: "When and where are workshops held?", answer: "Our Spring 2026 series runs at the Sweetwater Urban Farms greenhouse in Alpharetta, GA. Workshops typically last 90 minutes and cover everything from setup to harvest. Reserve your spot through the form on the right." },
   { category: "Consulting", question: "Do you work with restaurants and schools?", answer: "Yes. We've partnered with venues like Braves Stadium and international Tower Farms like Green Life Farms Jamaica, plus a number of schools for STEM programs. Reach out and we'll set up a consultation." }
 ];
 
@@ -188,7 +188,7 @@ export default function App() {
           <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
             <Leaf className="text-paper w-4 h-4" />
           </div>
-          <span className={`font-mono text-[10px] font-bold tracking-[0.3em] uppercase transition-colors duration-300 ${scrolled ? 'text-ink' : 'text-paper'}`}>Sweetwater</span>
+          <span className={`font-mono text-[10px] font-bold tracking-[0.25em] uppercase transition-colors duration-300 ${scrolled ? 'text-ink' : 'text-paper'}`}>Sweetwater Urban Farms</span>
         </motion.a>
 
         <div className="hidden md:flex items-center gap-12 pointer-events-auto">
@@ -374,7 +374,8 @@ export default function App() {
                 partners: "Tower Gardens · Seedlings · Workshops",
                 cta: "Start Growing at Home",
                 subject: "Tower Garden Systems",
-                img: "/images/IMG20240918103419.jpg"
+                img: "/images/IMG20240918103419.jpg",
+                external: "https://atlurbanfarms.com/"
               }
             ].map((item, i) => (
               <motion.div
@@ -383,7 +384,7 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.15 }}
                 className="group cursor-pointer"
-                onClick={() => setInquiryAndScroll(item.subject)}
+                onClick={() => item.external ? window.open(item.external, '_blank', 'noopener,noreferrer') : setInquiryAndScroll(item.subject)}
               >
                 <div className="relative aspect-[3/4] overflow-hidden rounded-[2rem] mb-8">
                   <img
@@ -411,7 +412,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
           <div className="relative">
             <div className="pill-image w-full aspect-[4/5] overflow-hidden">
-              <img src="/images/IMG20260403115325.jpg" alt="Sweetwater greenhouse" className="w-full h-full object-cover" />
+              <img src="/images/IMG20260403115325.jpg" alt="Sweetwater Urban Farms greenhouse" className="w-full h-full object-cover" />
             </div>
             <div className="absolute -bottom-10 -right-10 w-64 h-64 glass-card rounded-full flex items-center justify-center p-8 text-center">
               <p className="font-serif italic text-lg leading-tight">
@@ -563,14 +564,14 @@ export default function App() {
           <span className="font-mono text-[10px] uppercase tracking-[0.5em] opacity-40 mb-8 block">05 // Workshops</span>
           <h2 className="text-7xl md:text-[10rem] font-serif italic mb-16 tracking-tighter">Grow Good.</h2>
           <div className="relative max-w-4xl mx-auto aspect-video rounded-[3rem] overflow-hidden mb-16">
-            <img src="/images/workshop-greenhouse.jpg" alt="Sweetwater workshop in the greenhouse" className="w-full h-full object-cover" />
+            <img src="/images/workshop-greenhouse.jpg" alt="Sweetwater Urban Farms workshop in the greenhouse" className="w-full h-full object-cover" />
           </div>
           <p className="max-w-2xl mx-auto text-2xl font-body italic text-ink/60 leading-relaxed mb-12">
-            Join us for our Spring 2026 series at the Sweetwater greenhouse in Alpharetta. Learn the science and soul of aeroponic growing.
+            Join us for our Spring 2026 series at the Sweetwater Urban Farms greenhouse in Alpharetta. Learn the science and soul of aeroponic growing.
           </p>
-          <button onClick={() => setInquiryAndScroll('Workshops')} className="px-12 py-6 border border-accent text-accent rounded-full font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-accent hover:text-paper transition-all">
+          <a href="https://atlurbanfarms.com/calendar" target="_blank" rel="noopener noreferrer" className="inline-block px-12 py-6 border border-accent text-accent rounded-full font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-accent hover:text-paper transition-all">
             Reserve Your Space
-          </button>
+          </a>
         </div>
       </section>
 
@@ -601,7 +602,7 @@ export default function App() {
               transition={{ duration: 2 }}
               className="rounded-full aspect-square overflow-hidden border-[20px] border-paper/5"
             >
-              <img src="/images/IMG_20210427_105856_607.jpg" alt="Sheree and Clint, Sweetwater founders" className="w-full h-full object-cover grayscale" />
+              <img src="/images/IMG_20210427_105856_607.jpg" alt="Sheree and Clint, Sweetwater Urban Farms founders" className="w-full h-full object-cover grayscale" />
             </motion.div>
           </div>
         </div>
@@ -764,15 +765,15 @@ export default function App() {
                 <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center">
                   <Leaf className="text-paper w-5 h-5" />
                 </div>
-                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.4em]">Sweetwater</span>
+                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.3em]">Sweetwater Urban Farms</span>
               </a>
             </div>
 
             <div className="flex flex-col items-center gap-5">
               <div className="flex items-center gap-3 flex-wrap justify-center">
-                <a href="mailto:info@sweetwaterurbanfarms.com" className="font-serif italic text-sm text-ink/60 hover:text-accent transition-colors">info@sweetwaterurbanfarms.com</a>
-                <span className="text-ink/20">·</span>
-                <a href="tel:7706786552" className="font-serif italic text-sm text-ink/60 hover:text-accent transition-colors">770.678.6552</a>
+                <a href="mailto:info@sweetwaterurbanfarms.com" className="font-serif italic text-base text-ink/80 hover:text-accent transition-colors">info@sweetwaterurbanfarms.com</a>
+                <span className="text-ink/30">·</span>
+                <a href="tel:7706786552" className="font-serif italic text-base text-ink/80 hover:text-accent transition-colors">770.678.6552</a>
               </div>
               <div className="flex gap-3">
                 {[
@@ -781,25 +782,25 @@ export default function App() {
                   { Icon: Youtube, href: "https://www.youtube.com/@sweetwaterurbanfarms", label: "YouTube" },
                   { Icon: Linkedin, href: "https://www.linkedin.com/company/sweetwater-urban-farms", label: "LinkedIn" }
                 ].map(({ Icon, href, label }) => (
-                  <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="w-9 h-9 rounded-full border border-ink/10 flex items-center justify-center hover:bg-accent hover:text-paper hover:border-accent transition-all">
-                    <Icon size={14} strokeWidth={1.5} />
+                  <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="w-10 h-10 rounded-full border border-ink/20 flex items-center justify-center hover:bg-accent hover:text-paper hover:border-accent transition-all">
+                    <Icon size={16} strokeWidth={1.5} />
                   </a>
                 ))}
               </div>
             </div>
 
-            <div className="flex flex-col items-center md:items-end gap-3 font-mono text-[9px] uppercase tracking-[0.25em]">
-              <a href="/privacy" className="opacity-40 hover:opacity-100 transition-opacity">Privacy</a>
-              <a href="/terms" className="opacity-40 hover:opacity-100 transition-opacity">Terms</a>
+            <div className="flex flex-col items-center md:items-end gap-3 font-mono text-[11px] uppercase tracking-[0.25em] text-ink/70">
+              <a href="/privacy" className="hover:text-accent transition-colors">Privacy</a>
+              <a href="/terms" className="hover:text-accent transition-colors">Terms</a>
             </div>
           </div>
 
-          <div className="pt-8 border-t border-ink/5 text-center space-y-2">
-            <p className="font-mono text-[9px] opacity-30 uppercase tracking-[0.2em]">
+          <div className="pt-8 border-t border-ink/10 text-center space-y-2">
+            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink/60">
               © 2026 Sweetwater Urban Farms · All rights reserved
             </p>
-            <p className="font-mono text-[9px] opacity-30 uppercase tracking-[0.2em]">
-              Built by <a href="https://sweetwater.technology" target="_blank" rel="noopener noreferrer" className="hover:opacity-100 hover:text-accent transition-colors">Sweetwater Technology</a>
+            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink/60">
+              Built by <a href="https://sweetwater.technology" target="_blank" rel="noopener noreferrer" className="text-ink/80 hover:text-accent transition-colors">Sweetwater Technology</a>
             </p>
           </div>
         </div>
