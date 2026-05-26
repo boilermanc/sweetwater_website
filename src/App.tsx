@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion } from "motion/react";
 import {
   Leaf,
   ArrowRight,
@@ -14,7 +14,7 @@ import {
   Plus,
   Minus
 } from "lucide-react";
-import { useState, useRef, FormEvent } from "react";
+import { useState, useEffect, FormEvent } from "react";
 
 const FAQS = [
   { category: "Getting Started", question: "How does aeroponic growing work?", answer: "Aeroponics grows plants in a fine mist of nutrient-rich water — no soil. Plants get more oxygen at the roots, grow up to 3× faster, and use 95% less water than traditional methods." },
@@ -30,9 +30,13 @@ export default function App() {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 80);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const handleSubmit = async () => {
     if (!formData.name || !formData.email || !formData.message) {
@@ -68,10 +72,10 @@ export default function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-paper text-ink font-sans selection:bg-growth/30 overflow-x-hidden" ref={containerRef}>
+    <div className="min-h-screen bg-paper text-ink font-sans selection:bg-growth/30 overflow-x-hidden">
       {/* Minimal Navigation */}
-      <nav className="fixed top-0 w-full z-50 px-8 py-8 flex justify-between items-center pointer-events-none">
-        <motion.div 
+      <nav className={`fixed top-0 w-full z-50 px-8 py-8 flex justify-between items-center pointer-events-none transition-colors duration-300 ${scrolled ? 'bg-paper/85 backdrop-blur-md' : ''}`}>
+        <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           className="flex items-center gap-3 pointer-events-auto group cursor-pointer"
@@ -79,15 +83,15 @@ export default function App() {
           <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
             <Leaf className="text-paper w-4 h-4" />
           </div>
-          <span className="font-mono text-[10px] font-bold tracking-[0.3em] uppercase">Sweetwater</span>
+          <span className={`font-mono text-[10px] font-bold tracking-[0.3em] uppercase transition-colors duration-300 ${scrolled ? 'text-ink' : 'text-paper'}`}>Sweetwater</span>
         </motion.div>
 
         <div className="hidden md:flex items-center gap-12 pointer-events-auto">
           {navLinks.slice(1, 5).map((link) => (
-            <a 
-              key={link.name} 
+            <a
+              key={link.name}
               href={link.href}
-              className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-40 hover:opacity-100 transition-all relative group"
+              className={`font-mono text-[9px] uppercase tracking-[0.2em] transition-colors relative group ${scrolled ? 'text-ink/40 hover:text-ink' : 'text-paper/60 hover:text-paper'}`}
             >
               {link.name}
               <span className="absolute -bottom-1 left-0 w-0 h-px bg-accent group-hover:w-full transition-all duration-300"></span>
@@ -96,12 +100,12 @@ export default function App() {
         </div>
 
         <div className="flex items-center gap-8 pointer-events-auto">
-          <button className="hidden lg:block font-mono text-[9px] font-bold uppercase tracking-[0.2em] border border-ink/10 px-6 py-2.5 rounded-full hover:bg-ink hover:text-paper transition-all">
+          <button className={`hidden lg:block font-mono text-[9px] font-bold uppercase tracking-[0.2em] border px-6 py-2.5 rounded-full transition-all ${scrolled ? 'border-ink/10 text-ink hover:bg-ink hover:text-paper' : 'border-paper/30 text-paper hover:bg-paper hover:text-ink'}`}>
             Join the Farm
           </button>
-          <button 
-            onClick={() => setIsMenuOpen(!isMenuOpen)} 
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-paper border border-ink/5 shadow-sm hover:shadow-md transition-all"
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className={`w-10 h-10 flex items-center justify-center rounded-full border shadow-sm hover:shadow-md transition-all ${scrolled ? 'bg-paper border-ink/5 text-ink' : 'bg-paper/10 border-paper/20 text-paper backdrop-blur'}`}
           >
             {isMenuOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
@@ -136,56 +140,58 @@ export default function App() {
         </motion.div>
       )}
 
-      {/* Hero Section - Editorial Style */}
-      <section id="home" className="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-20 px-8">
-        <div className="max-w-7xl mx-auto w-full relative">
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center relative z-10"
-          >
-            <span className="font-mono text-[10px] uppercase tracking-[0.5em] opacity-40 mb-8 block">Est. 2018 // Alpharetta, GA</span>
-            <h1 className="text-[12vw] lg:text-[10rem] font-serif leading-[0.8] tracking-tight mb-12">
-              Future <br />
-              <span className="italic text-growth">Harvest</span>
-            </h1>
-            <div className="flex flex-col md:flex-row items-center justify-center gap-12 mt-12">
-              <p className="max-w-sm text-lg font-body italic text-ink/60 leading-relaxed">
-                Nurturing our community with nutrient-dense local produce through the art of aeroponics.
-              </p>
-              <motion.div 
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="w-px h-24 bg-ink/10 hidden md:block"
-              ></motion.div>
-              <div className="flex gap-4">
-                <button className="px-8 py-4 bg-accent text-paper rounded-full font-mono text-[10px] uppercase tracking-widest hover:scale-105 transition-transform">
-                  Explore Systems
-                </button>
-              </div>
-            </div>
-          </motion.div>
+      {/* Hero Section */}
+      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* BACKGROUND — placeholder for future video loop. When video is ready,
+            replace this div with: <video autoPlay muted loop playsInline poster="/hero-poster.jpg"
+            className="absolute inset-0 w-full h-full object-cover"><source src="/hero-loop.mp4" type="video/mp4" /></video> */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_40%,#4a5a4a_0%,#2a3a2a_40%,#1a2a1a_100%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink/15 via-transparent to-ink/50" />
 
-          {/* Floating Decorative Images */}
-          <motion.div 
-            style={{ y }}
-            className="absolute -top-20 -left-10 w-64 h-80 hidden xl:block opacity-40"
-          >
-            <img src="https://picsum.photos/seed/leaf1/600/800" className="w-full h-full object-cover rounded-t-full" referrerPolicy="no-referrer" />
-          </motion.div>
-          <motion.div 
-            style={{ y: useTransform(scrollYProgress, [0, 1], [0, -400]) }}
-            className="absolute top-40 -right-20 w-80 h-[30rem] hidden xl:block opacity-30"
-          >
-            <img src="/images/tower-hero.jpg" alt="Tower Garden growing fresh greens" className="w-full h-full object-cover rounded-full" />
-          </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          className="relative z-10 text-center px-8 max-w-5xl text-paper"
+        >
+          <span className="font-mono text-[10px] uppercase tracking-[0.5em] text-paper/60 mb-8 block">Est. 2018 // Alpharetta, GA</span>
+          <h1 className="text-[14vw] md:text-[8rem] lg:text-[9rem] font-serif font-light leading-[0.9] tracking-tighter mb-8">
+            We design, build,<br/>and <span className="italic text-growth">grow.</span>
+          </h1>
+          <p className="font-body italic text-lg md:text-xl text-paper/75 max-w-xl mx-auto mb-12 leading-relaxed">
+            Aeroponic installations and ongoing support for restaurants, schools, and home growers.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <a href="#connect" className="px-8 py-4 bg-paper text-ink rounded-full font-mono text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-transform">
+              Start a Project
+            </a>
+            <a href="#services" className="px-8 py-4 border border-paper/30 text-paper rounded-full font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-paper/10 transition-colors">
+              See Our Work
+            </a>
+          </div>
+        </motion.div>
+
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-ink/70 to-transparent pt-16 pb-12 px-6 z-10">
+          <p className="font-mono text-[8px] uppercase tracking-[0.4em] text-paper/50 text-center mb-3">In the field with</p>
+          <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-2">
+            <span className="font-serif italic text-base md:text-lg text-paper/80">Braves Stadium</span>
+            <span className="text-paper/30 text-xs">•</span>
+            <span className="font-serif italic text-base md:text-lg text-paper/80">AboutFace USA</span>
+            <span className="text-paper/30 text-xs">•</span>
+            <span className="font-serif italic text-base md:text-lg text-paper/80">Green Life Farms Jamaica</span>
+            <span className="text-paper/30 text-xs">•</span>
+            <span className="font-serif italic text-base md:text-lg text-paper/60">Sproutify</span>
+          </div>
         </div>
 
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-20">
-          <span className="font-mono text-[9px] uppercase tracking-[0.4em]">Scroll</span>
-          <ChevronDown size={14} />
-        </div>
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="absolute bottom-36 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-paper/40 z-10"
+        >
+          <span className="font-mono text-[8px] uppercase tracking-[0.4em]">Scroll</span>
+          <ChevronDown size={12} />
+        </motion.div>
       </section>
 
       {/* Section 01: The Philosophy */}
