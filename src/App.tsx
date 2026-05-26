@@ -217,28 +217,30 @@ export default function App() {
 
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="fixed inset-0 bg-paper z-[60] flex flex-col items-center justify-center p-12"
+          className="fixed inset-0 bg-paper z-[60] overflow-y-auto"
         >
-          <button onClick={() => setIsMenuOpen(false)} className="absolute top-8 right-8 p-4">
+          <button onClick={() => setIsMenuOpen(false)} className="fixed top-8 right-8 p-4 z-10">
             <X size={32} strokeWidth={1} />
           </button>
-          <div className="flex flex-col items-center gap-8">
-            {navLinks.map((link, i) => (
-              <motion.a 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                key={link.name} 
-                href={link.href}
-                onClick={() => setIsMenuOpen(false)}
-                className="text-5xl font-serif italic hover:text-growth transition-colors"
-              >
-                {link.name}
-              </motion.a>
-            ))}
+          <div className="min-h-full flex flex-col items-center justify-center py-24 px-8">
+            <div className="flex flex-col items-center gap-6 md:gap-8">
+              {navLinks.map((link, i) => (
+                <motion.a
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-4xl md:text-5xl font-serif italic hover:text-growth transition-colors"
+                >
+                  {link.name}
+                </motion.a>
+              ))}
+            </div>
           </div>
         </motion.div>
       )}
@@ -299,7 +301,7 @@ export default function App() {
       </section>
 
       {/* Section 01: The Philosophy */}
-      <section className="py-40 px-8 bg-accent text-paper">
+      <section className="py-20 md:py-40 px-8 bg-accent text-paper">
         <div className="max-w-5xl mx-auto text-center">
           <motion.span 
             whileInView={{ opacity: 1 }}
@@ -328,7 +330,7 @@ export default function App() {
       </section>
 
       {/* Section 02: Residential Systems */}
-      <section id="systems" className="py-40 px-8">
+      <section id="systems" className="py-20 md:py-40 px-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
             <div className="max-w-2xl">
@@ -404,7 +406,7 @@ export default function App() {
       </section>
 
       {/* Section 03: Community & Commercial */}
-      <section id="services" className="py-40 px-8 bg-[#F5F5F0]">
+      <section id="services" className="py-20 md:py-40 px-8 bg-[#F5F5F0]">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
           <div className="relative">
             <div className="pill-image w-full aspect-[4/5] overflow-hidden">
@@ -451,7 +453,7 @@ export default function App() {
       </section>
 
       {/* Section 03: Clients */}
-      <section id="clients" className="py-40 px-8">
+      <section id="clients" className="py-20 md:py-40 px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-24">
             <span className="font-mono text-[10px] uppercase tracking-[0.5em] opacity-40 mb-8 block">03 // Clients</span>
@@ -503,7 +505,7 @@ export default function App() {
       </section>
 
       {/* Section 04: Workshops */}
-      <section id="workshops" className="py-40 px-8 bg-[#F5F5F0]">
+      <section id="workshops" className="py-20 md:py-40 px-8 bg-[#F5F5F0]">
         <div className="max-w-7xl mx-auto text-center">
           <span className="font-mono text-[10px] uppercase tracking-[0.5em] opacity-40 mb-8 block">04 // Workshops</span>
           <h2 className="text-7xl md:text-[10rem] font-serif italic mb-16 tracking-tighter">Grow Good.</h2>
@@ -525,7 +527,7 @@ export default function App() {
       </section>
 
       {/* Section 05: Story */}
-      <section id="story" className="py-40 px-8 bg-accent text-paper overflow-hidden relative">
+      <section id="story" className="py-20 md:py-40 px-8 bg-accent text-paper overflow-hidden relative">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-24 items-center">
           <div className="lg:col-span-7">
             <span className="font-mono text-[10px] uppercase tracking-[0.5em] text-growth mb-8 block">05 // Our Story</span>
@@ -558,7 +560,7 @@ export default function App() {
       </section>
 
       {/* Section 06: Connect */}
-      <section id="connect" className="py-40 px-8">
+      <section id="connect" className="py-20 md:py-40 px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-24">
             <span className="font-mono text-[10px] uppercase tracking-[0.5em] opacity-40 mb-8 block">05 // Connect</span>
