@@ -12,7 +12,8 @@ import {
   Mail,
   Clock,
   Plus,
-  Minus
+  Minus,
+  ExternalLink
 } from "lucide-react";
 import { useState, useEffect, FormEvent } from "react";
 
@@ -168,6 +169,7 @@ export default function App() {
     { name: "Systems", href: "/#systems" },
     { name: "Services", href: "/#services" },
     { name: "Clients", href: "/#clients" },
+    { name: "Platform", href: "/#platform" },
     { name: "Workshops", href: "/#workshops" },
     { name: "Our Story", href: "/#story" },
     { name: "Connect", href: "/#connect" },
@@ -190,7 +192,7 @@ export default function App() {
         </motion.a>
 
         <div className="hidden md:flex items-center gap-12 pointer-events-auto">
-          {navLinks.slice(1, 5).map((link) => (
+          {navLinks.slice(1, 6).map((link) => (
             <a
               key={link.name}
               href={link.href}
@@ -472,13 +474,13 @@ export default function App() {
             >
               <img
                 src="/images/truist-park.jpg"
-                alt="Eight Tower Gardens installed at Truist Park, home of the Atlanta Braves"
+                alt="Eight Tower Gardens installed at Braves Stadium, home of the Atlanta Braves"
                 className="w-full h-full object-cover"
               />
             </motion.div>
             <div>
               <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-growth mb-4 block">Featured Partner</span>
-              <h3 className="text-5xl font-serif mb-2">Truist Park</h3>
+              <h3 className="text-5xl font-serif mb-2">Braves Stadium</h3>
               <p className="font-mono text-xs uppercase tracking-widest opacity-40 mb-8">Atlanta, GA · Home of the Atlanta Braves</p>
               <p className="text-ink/70 font-body leading-relaxed mb-8">
                 We provide and manage <span className="text-accent font-semibold">eight Tower Gardens</span> used inside the stadium by the Executive Chef. Each week we deliver new plants, clean the towers, check nutrient and water quality, and harvest as needed — so the kitchen always has the freshest greens, growing right where they're served.
@@ -495,7 +497,7 @@ export default function App() {
                   </li>
                 ))}
               </ul>
-              <button className="px-10 py-5 bg-accent text-paper rounded-full font-mono text-[10px] uppercase tracking-widest hover:bg-growth transition-colors">
+              <button onClick={() => setInquiryAndScroll('Commercial Installation')} className="px-10 py-5 bg-accent text-paper rounded-full font-mono text-[10px] uppercase tracking-widest hover:bg-growth transition-colors">
                 Bring This To Your Space
               </button>
             </div>
@@ -503,10 +505,62 @@ export default function App() {
         </div>
       </section>
 
-      {/* Section 04: Workshops */}
+      {/* Section 04: Platform */}
+      <section id="platform" className="py-20 md:py-40 px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20 max-w-3xl mx-auto">
+            <span className="font-mono text-[10px] uppercase tracking-[0.5em] opacity-40 mb-8 block">04 // The Platform</span>
+            <h2 className="text-6xl md:text-8xl font-serif leading-none tracking-tighter mb-8">
+              Meet<br /><span className="italic text-growth">Sproutify.</span>
+            </h2>
+            <p className="font-body italic text-lg md:text-xl text-ink/60 max-w-2xl mx-auto leading-relaxed">
+              We don't just consult on aeroponic systems — we built the software that runs them. Four products, one platform, used by home growers, classrooms, and commercial farms worldwide.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-8">
+            {[
+              { name: "Sproutify Home", tagline: "Your tower's companion app.", desc: "Manage towers, track plants, monitor water quality — and ask Sage, our AI growing assistant, for guidance tuned to your exact setup.", tags: ["iOS", "Android", "Home growers"], href: "https://www.sproutify.app/sproutify-home.html", bg: "bg-ink", text: "text-paper", label: "text-growth", tagBg: "bg-paper/8", tagText: "text-paper/60" },
+              { name: "Sproutify Farm", tagline: "The OS for aeroponic farms.", desc: "Lifecycle tower management, staff workflows, nutrient dosing, and IPM compliance — built for multi-hundred-tower commercial operations.", tags: ["Web", "Commercial"], href: "https://www.sproutify.app/sproutify-farm.html", bg: "bg-accent", text: "text-paper", label: "text-growth", tagBg: "bg-paper/10", tagText: "text-paper/70" },
+              { name: "Sproutify Micro", tagline: "Strategy, not just spreadsheets.", desc: "Tray management, seed inventory, order workflows, and Sage-powered daily strategy for microgreen farmers serving restaurants and markets.", tags: ["Coming soon", "Microgreens"], href: "https://www.sproutify.app/sproutify-micro.html", bg: "bg-paper", text: "text-ink", label: "text-accent", tagBg: "bg-ink/5", tagText: "text-ink/60", border: "border border-ink/10" },
+              { name: "Sproutify School", tagline: "Aeroponic learning, for the classroom.", desc: "Classroom-friendly tools for teachers running Tower Garden programs — student-safe interfaces, curriculum integration, and progress tracking.", tags: ["Web", "K–12"], href: "https://school.sproutify.app/", bg: "bg-growth", text: "text-ink", label: "text-accent", tagBg: "bg-ink/8", tagText: "text-ink/70" },
+            ].map((p, i) => (
+              <a key={i} href={p.href} target="_blank" rel="noopener noreferrer" className={`block ${p.bg} ${p.text} ${p.border || ''} p-8 md:p-10 rounded-[2rem] group hover:scale-[1.01] transition-transform duration-300`}>
+                <div className="flex justify-between items-start mb-6">
+                  <span className={`font-mono text-[10px] uppercase tracking-[0.3em] ${p.label}`}>{p.name}</span>
+                  <ExternalLink size={14} className="opacity-40 group-hover:opacity-100 transition-opacity" />
+                </div>
+                <h3 className="font-serif italic text-3xl md:text-4xl leading-tight mb-4">{p.tagline}</h3>
+                <p className="font-body text-sm md:text-base leading-relaxed opacity-75 mb-8 max-w-md">{p.desc}</p>
+                <div className="flex gap-2 flex-wrap">
+                  {p.tags.map((tag, j) => (
+                    <span key={j} className={`font-mono text-[9px] uppercase tracking-[0.2em] ${p.tagBg} ${p.tagText} px-3 py-1.5 rounded-full`}>{tag}</span>
+                  ))}
+                </div>
+              </a>
+            ))}
+          </div>
+
+          <a href="https://www.sproutify.app/" target="_blank" rel="noopener noreferrer" className="block bg-ink text-paper p-10 md:p-12 rounded-[2rem] group hover:scale-[1.005] transition-transform duration-300">
+            <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-8">
+              <div>
+                <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-growth mb-3">Meet Sage</p>
+                <p className="font-serif italic text-2xl md:text-3xl leading-snug max-w-xl">
+                  AI built for aeroponic growers — answers tuned to your exact tower setup.
+                </p>
+              </div>
+              <div className="inline-flex items-center gap-3 bg-paper text-ink px-8 py-4 rounded-full font-mono text-[10px] font-bold uppercase tracking-widest flex-shrink-0 group-hover:gap-5 transition-all">
+                Explore Sproutify <ExternalLink size={14} />
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      {/* Section 05: Workshops */}
       <section id="workshops" className="py-20 md:py-40 px-8 bg-[#F5F5F0]">
         <div className="max-w-7xl mx-auto text-center">
-          <span className="font-mono text-[10px] uppercase tracking-[0.5em] opacity-40 mb-8 block">04 // Workshops</span>
+          <span className="font-mono text-[10px] uppercase tracking-[0.5em] opacity-40 mb-8 block">05 // Workshops</span>
           <h2 className="text-7xl md:text-[10rem] font-serif italic mb-16 tracking-tighter">Grow Good.</h2>
           <div className="relative max-w-4xl mx-auto aspect-video rounded-[3rem] overflow-hidden mb-16">
             <img src="/images/workshop-greenhouse.jpg" alt="Sweetwater workshop in the greenhouse" className="w-full h-full object-cover" />
@@ -524,7 +578,7 @@ export default function App() {
       <section id="story" className="py-20 md:py-40 px-8 bg-accent text-paper overflow-hidden relative">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-24 items-center">
           <div className="lg:col-span-7">
-            <span className="font-mono text-[10px] uppercase tracking-[0.5em] text-growth mb-8 block">05 // Our Story</span>
+            <span className="font-mono text-[10px] uppercase tracking-[0.5em] text-growth mb-8 block">06 // Our Story</span>
             <h2 className="text-6xl md:text-8xl font-serif italic mb-12 leading-none">The Sweet Life.</h2>
             <div className="space-y-8 text-xl md:text-2xl font-body italic text-paper/70 leading-relaxed max-w-2xl">
               <p>
@@ -557,7 +611,7 @@ export default function App() {
       <section id="connect" className="py-20 md:py-40 px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-24">
-            <span className="font-mono text-[10px] uppercase tracking-[0.5em] opacity-40 mb-8 block">05 // Connect</span>
+            <span className="font-mono text-[10px] uppercase tracking-[0.5em] opacity-40 mb-8 block">07 // Connect</span>
             <h2 className="text-6xl md:text-8xl font-serif leading-none tracking-tight">
               How can we help<br />
               <span className="italic text-growth">you grow?</span>
@@ -740,9 +794,14 @@ export default function App() {
             </div>
           </div>
 
-          <p className="font-mono text-[9px] opacity-30 uppercase tracking-[0.2em] text-center pt-8 border-t border-ink/5">
-            © 2026 Sweetwater Urban Farms · All rights reserved
-          </p>
+          <div className="pt-8 border-t border-ink/5 text-center space-y-2">
+            <p className="font-mono text-[9px] opacity-30 uppercase tracking-[0.2em]">
+              © 2026 Sweetwater Urban Farms · All rights reserved
+            </p>
+            <p className="font-mono text-[9px] opacity-30 uppercase tracking-[0.2em]">
+              Built by <a href="https://sweetwater.technology" target="_blank" rel="noopener noreferrer" className="hover:opacity-100 hover:text-accent transition-colors">Sweetwater Technology</a>
+            </p>
+          </div>
         </div>
       </footer>
     </div>
