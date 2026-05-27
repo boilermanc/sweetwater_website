@@ -15,14 +15,32 @@ import {
   Minus,
   ExternalLink
 } from "lucide-react";
-import { useState, useEffect, FormEvent } from "react";
+import { useState, useEffect, FormEvent, ReactNode } from "react";
 
-const FAQS = [
-  { category: "Getting Started", question: "How does aeroponic growing work?", answer: "Aeroponics grows plants in a fine mist of nutrient-rich water — no soil. Plants get more oxygen at the roots, grow up to 3× faster, and use 95% less water than traditional methods." },
+const ATL_URL = "https://atlurbanfarms.com/";
+
+const FAQS: { category: string; question: string; answer: ReactNode }[] = [
+  { category: "Getting Started", question: "How does aeroponic growing work?", answer: "Aeroponic towers grow plants vertically, fed a waterfall of nutrient-rich water — no soil. Plants get more oxygen at the roots, grow up to 3× faster, and use 95% less water than traditional methods." },
   { category: "Tower Garden", question: "What's included with a Tower Garden purchase?", answer: "Each Tower Garden comes with the growing system, water pump, timer, starter nutrients, and rockwool growing medium. We also offer optional LED grow light kits and seedling packages to get you started." },
-  { category: "Seedlings", question: "Can I buy seedlings without a system?", answer: "Yes — our seedling program is open to anyone, whether you have a Tower Garden, a traditional garden, or are just experimenting. Seedlings are nurtured in our greenhouse and delivered ready to plant." },
-  { category: "Workshops", question: "When and where are workshops held?", answer: "Our Spring 2026 series runs at the Sweetwater Urban Farms greenhouse in Alpharetta, GA. Workshops typically last 90 minutes and cover everything from setup to harvest. Reserve your spot through the form on the right." },
-  { category: "Consulting", question: "Do you work with restaurants and schools?", answer: "Yes. We've partnered with venues like Braves Stadium and international Tower Farms like Green Life Farms Jamaica, plus a number of schools for STEM programs. Reach out and we'll set up a consultation." }
+  {
+    category: "Seedlings",
+    question: "Can I buy seedlings without a system?",
+    answer: (
+      <>
+        Yes — our seedling division, <a href={ATL_URL} target="_blank" rel="noopener noreferrer" className="text-accent underline underline-offset-4 decoration-accent/30">ATL Urban Farms</a>, is open to anyone, whether you have a Tower Garden, a traditional garden, or are just experimenting. Seedlings are nurtured in our greenhouse and delivered ready to plant.
+      </>
+    )
+  },
+  {
+    category: "Workshops",
+    question: "When and where are workshops held?",
+    answer: (
+      <>
+        Our workshop series runs at the Sweetwater Urban Farms greenhouse in Alpharetta, GA. Workshops typically last 90 minutes and cover everything from setup to harvest. <a href={ATL_URL} target="_blank" rel="noopener noreferrer" className="text-accent underline underline-offset-4 decoration-accent/30">Register at ATL Urban Farms</a> to reserve your spot.
+      </>
+    )
+  },
+  { category: "Consulting", question: "Do you work with restaurants and schools?", answer: "Yes. We've partnered with venues like Truist Park and international farms like Green Life Farms Jamaica, plus K-12 schools nationwide. Reach out and we'll set up a consultation." }
 ];
 
 function PrivacyContent() {
@@ -183,12 +201,14 @@ export default function App() {
           href="/"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="flex items-center gap-3 pointer-events-auto group cursor-pointer"
+          className="flex items-center pointer-events-auto group cursor-pointer"
+          aria-label="Sweetwater Urban Farms — home"
         >
-          <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-            <Leaf className="text-paper w-4 h-4" />
-          </div>
-          <span className={`font-mono text-[10px] font-bold tracking-[0.25em] uppercase transition-colors duration-300 ${scrolled ? 'text-ink' : 'text-paper'}`}>Sweetwater Urban Farms</span>
+          <img
+            src="/images/sweetwater-logo.png"
+            alt="Sweetwater Urban Farms"
+            className={`h-9 md:h-10 w-auto transition-all duration-300 group-hover:scale-105 ${scrolled ? '' : 'brightness-0 invert'}`}
+          />
         </motion.a>
 
         <div className="hidden md:flex items-center gap-12 pointer-events-auto">
@@ -196,7 +216,7 @@ export default function App() {
             <a
               key={link.name}
               href={link.href}
-              className={`font-mono text-[9px] uppercase tracking-[0.2em] transition-colors relative group ${scrolled ? 'text-ink/40 hover:text-ink' : 'text-paper/60 hover:text-paper'}`}
+              className={`font-mono text-xs uppercase tracking-[0.2em] transition-colors relative group ${scrolled ? 'text-ink/80 hover:text-ink' : 'text-paper/90 hover:text-paper'}`}
             >
               {link.name}
               <span className="absolute -bottom-1 left-0 w-0 h-px bg-accent group-hover:w-full transition-all duration-300"></span>
@@ -205,7 +225,7 @@ export default function App() {
         </div>
 
         <div className="flex items-center gap-8 pointer-events-auto">
-          <button onClick={() => document.getElementById('connect')?.scrollIntoView({ behavior: 'smooth' })} className={`hidden lg:block font-mono text-[9px] font-bold uppercase tracking-[0.2em] px-6 py-2.5 rounded-full transition-all ${scrolled ? 'border border-ink/10 text-ink hover:bg-ink hover:text-paper' : 'border border-paper/30 text-paper hover:bg-paper hover:text-ink'}`}>
+          <button onClick={() => document.getElementById('connect')?.scrollIntoView({ behavior: 'smooth' })} className={`hidden lg:block font-mono text-xs font-bold uppercase tracking-[0.2em] px-6 py-2.5 rounded-full transition-all ${scrolled ? 'border border-ink/20 text-ink hover:bg-ink hover:text-paper' : 'border border-paper/50 text-paper hover:bg-paper hover:text-ink'}`}>
             Get in Touch
           </button>
           <button
@@ -284,7 +304,7 @@ export default function App() {
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-ink/70 to-transparent pt-16 pb-12 px-6 z-10">
           <p className="font-mono text-[8px] uppercase tracking-[0.4em] text-paper/50 text-center mb-3">In the field with</p>
           <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-2">
-            <span className="font-serif italic text-base md:text-lg text-paper/80">Braves Stadium</span>
+            <span className="font-serif italic text-base md:text-lg text-paper/80">Truist Park</span>
             <span className="text-paper/30 text-xs">•</span>
             <span className="font-serif italic text-base md:text-lg text-paper/80">Green Life Farms Jamaica</span>
             <span className="text-paper/30 text-xs">•</span>
@@ -313,14 +333,14 @@ export default function App() {
             Our Philosophy
           </motion.span>
           <h2 className="text-4xl md:text-6xl font-serif italic leading-tight mb-16">
-            "We believe that the future of food is local, sustainable, and 
-            deeply connected to the technology of nature."
+            "We believe that the future of food is local, sustainable, and
+            deeply connected to the community."
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-paper/10 pt-16">
             {[
               { label: "Efficiency", value: "95% Less Water" },
-              { label: "Velocity", value: "3x Faster Growth" },
-              { label: "Purity", value: "Zero Pesticides" }
+              { label: "Velocity", value: "30% More Product / 3x Faster Growth" },
+              { label: "Purity", value: "Zero Synthetic Pesticides" }
             ].map((stat, i) => (
               <div key={i}>
                 <p className="font-mono text-[9px] uppercase tracking-widest opacity-40 mb-4">{stat.label}</p>
@@ -338,12 +358,12 @@ export default function App() {
             <div className="max-w-2xl">
               <span className="font-mono text-[10px] uppercase tracking-[0.5em] opacity-40 mb-6 block">01 // What We Do</span>
               <h2 className="text-6xl md:text-8xl font-serif leading-none tracking-tighter">
-                From <span className="italic text-growth">Jamaica</span><br />
+                From <span className="italic text-growth">global farms</span><br />
                 to your kitchen.
               </h2>
             </div>
             <p className="max-w-xs text-ink/60 font-body italic">
-              Three worlds we work in — international Tower Farms, schools, and home growers — all built on one aeroponic foundation.
+              Three worlds we work in — commercial farms, schools, and home growers — all built on one aeroponic foundation.
             </p>
           </div>
 
@@ -351,17 +371,17 @@ export default function App() {
             {[
               {
                 label: "Commercial",
-                title: "From stadiums to global Tower Farms",
-                desc: "We design, build, and support commercial-scale aeroponic installations — from local restaurants and stadiums to international Tower Farms producing thousands of pounds of greens a week.",
-                partners: "With Braves Stadium · Green Life Farms Jamaica",
+                title: "From stadiums to global farms",
+                desc: "We design, build, and support commercial-scale aeroponic installations — from local restaurants and stadiums to international farms producing thousands of pounds of greens a week.",
+                partners: "With Truist Park · Green Life Farms Jamaica",
                 cta: "Discuss Your Project",
                 subject: "Commercial Installation",
-                img: "/images/IMG_7821.JPG"
+                img: "/images/IMG20241118142339.jpg"
               },
               {
                 label: "Schools & Programs",
                 title: "STEM curriculum that grows.",
-                desc: "Aeroponic systems and hands-on curriculum for K–12, after-school programs, and community education. Students learn biology, chemistry, and sustainability by doing.",
+                desc: "Aeroponic systems and hands-on curriculum for K–12, after-school programs, and community education. Students learn sustainable agriculture, biology, chemistry, mathematics, and even marketing and sales by doing.",
                 partners: "STEM curriculum · K–12 partnerships",
                 cta: "Bring It to Your School",
                 subject: "Schools & STEM Programs",
@@ -370,7 +390,7 @@ export default function App() {
               {
                 label: "Home Growers",
                 title: "Tower Gardens for everyone.",
-                desc: "The same aeroponic technology that powers our commercial work, scaled for your kitchen, deck, or backyard. Includes seedlings, ongoing support, and a community of growers.",
+                desc: "The same aeroponic technology that powers our commercial work, scaled for your kitchen, deck, or backyard. Includes seedlings, ongoing support, and a community of growers with ATL Urban Farms.",
                 partners: "Tower Gardens · Seedlings · Workshops",
                 cta: "Start Growing at Home",
                 subject: "Tower Garden Systems",
@@ -416,7 +436,7 @@ export default function App() {
             </div>
             <div className="absolute -bottom-10 -right-10 w-64 h-64 glass-card rounded-full flex items-center justify-center p-8 text-center">
               <p className="font-serif italic text-lg leading-tight">
-                From Braves Stadium to a Tower Farm in Jamaica — every project begins with a conversation.
+                From Truist Park to a commercial farm in Jamaica — every project begins with a conversation.
               </p>
             </div>
           </div>
@@ -429,10 +449,10 @@ export default function App() {
 
             <div className="space-y-10">
               {[
-                { title: "Discover", desc: "We listen first. Site walk-through, audience needs, growing goals. We learn what the food has to do — feed a stadium, anchor a science program, or fit a kitchen counter." },
+                { title: "Discover", desc: "We listen first. Site walk-through, audience needs, growing goals. We learn what the food has to do — feed a stadium, anchor a science program, or fill a kitchen counter." },
                 { title: "Design", desc: "Aeroponic systems engineered to your space and harvest targets. From single Tower Gardens to multi-hundred-tower commercial installs, every design accounts for water, light, power, and labor." },
                 { title: "Build", desc: "Installation by our team or in partnership with your contractors. Calibration, seedling stocking, and operator training are part of every install." },
-                { title: "Support", desc: "Ongoing remote monitoring through Sproutify, regular check-ins, seasonal seedling refreshes, and on-call troubleshooting. The system is the start, not the end." }
+                { title: "Support", desc: "Ongoing support with Sproutify aeroponic apps, regular check-ins, and on-call troubleshooting. The system is the start, not the end." }
               ].map((step, i) => (
                 <div key={i} className="flex gap-6 group">
                   <span className="text-growth font-mono text-xs flex-shrink-0 pt-2 tracking-widest">0{i+1}</span>
@@ -474,14 +494,14 @@ export default function App() {
               className="relative aspect-[4/3] overflow-hidden rounded-[2rem]"
             >
               <img
-                src="/images/truist-park.jpg"
-                alt="Eight Tower Gardens installed at Braves Stadium, home of the Atlanta Braves"
+                src="/images/truist-park.png"
+                alt="Eight Tower Gardens installed at Truist Park, home of the Atlanta Braves"
                 className="w-full h-full object-cover"
               />
             </motion.div>
             <div>
               <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-growth mb-4 block">Featured Partner</span>
-              <h3 className="text-5xl font-serif mb-2">Braves Stadium</h3>
+              <h3 className="text-5xl font-serif mb-2">Truist Park</h3>
               <p className="font-mono text-xs uppercase tracking-widest opacity-40 mb-8">Atlanta, GA · Home of the Atlanta Braves</p>
               <p className="text-ink/70 font-body leading-relaxed mb-8">
                 We provide and manage <span className="text-accent font-semibold">eight Tower Gardens</span> used inside the stadium by the Executive Chef. Each week we deliver new plants, clean the towers, check nutrient and water quality, and harvest as needed — so the kitchen always has the freshest greens, growing right where they're served.
@@ -503,6 +523,47 @@ export default function App() {
               </button>
             </div>
           </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mt-32">
+            <div className="lg:order-2">
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="relative aspect-[4/3] overflow-hidden rounded-[2rem]"
+              >
+                <img
+                  src="/images/IMG_7821.JPG"
+                  alt="Tower Gardens at Green Life Farms in Jamaica"
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+            </div>
+            <div className="lg:order-1">
+              <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-growth mb-4 block">Featured Partner</span>
+              <h3 className="text-5xl font-serif mb-2">Green Life Farms</h3>
+              <p className="font-mono text-xs uppercase tracking-widest opacity-40 mb-8">Jamaica · Commercial Tower Farm</p>
+              <p className="text-ink/70 font-body leading-relaxed mb-8">
+                We designed, built, and continue to support an <span className="text-accent font-semibold">international Tower Farm</span> producing thousands of pounds of greens a week. From site planning to operator training, our team partnered with Green Life to bring commercial-scale aeroponic growing to Jamaica.
+              </p>
+              <ul className="space-y-3 mb-10">
+                {[
+                  "Commercial-scale system design",
+                  "On-site installation & calibration",
+                  "Operator training & onboarding",
+                  "Ongoing remote support",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-xs font-mono uppercase tracking-widest text-ink/70">
+                    <Leaf size={14} className="text-growth shrink-0" /> {item}
+                  </li>
+                ))}
+              </ul>
+              <button onClick={() => setInquiryAndScroll('Commercial Installation')} className="px-10 py-5 bg-accent text-paper rounded-full font-mono text-[10px] uppercase tracking-widest hover:bg-growth transition-colors">
+                Start a Commercial Project
+              </button>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -521,10 +582,10 @@ export default function App() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-8">
             {[
-              { name: "Sproutify Home", tagline: "Your tower's companion app.", desc: "Manage towers, track plants, monitor water quality — and ask Sage, our AI growing assistant, for guidance tuned to your exact setup.", tags: ["iOS", "Android", "Home growers"], href: "https://www.sproutify.app/sproutify-home.html", bg: "bg-ink", text: "text-paper", label: "text-growth", tagBg: "bg-paper/8", tagText: "text-paper/60" },
-              { name: "Sproutify Farm", tagline: "The OS for aeroponic farms.", desc: "Lifecycle tower management, staff workflows, nutrient dosing, and IPM compliance — built for multi-hundred-tower commercial operations.", tags: ["Web", "Commercial"], href: "https://www.sproutify.app/sproutify-farm.html", bg: "bg-accent", text: "text-paper", label: "text-growth", tagBg: "bg-paper/10", tagText: "text-paper/70" },
+              { name: "Sproutify Home", tagline: "Your home tower's companion app.", desc: "Manage towers, track plants, monitor water quality — and ask Sage, our AI growing assistant, for guidance tuned to your exact setup.", tags: ["iOS", "Android", "Home growers"], href: "https://www.sproutify.app/sproutify-home.html", bg: "bg-ink", text: "text-paper", label: "text-growth", tagBg: "bg-paper/8", tagText: "text-paper/60" },
+              { name: "Sproutify Farm", tagline: "The OS for aeroponic farms.", desc: "Lifecycle tower management, staff workflows, nutrient dosing, and IPM compliance — built for commercial operations with hundreds of towers.", tags: ["Web", "Commercial"], href: "https://www.sproutify.app/sproutify-farm.html", bg: "bg-accent", text: "text-paper", label: "text-growth", tagBg: "bg-paper/10", tagText: "text-paper/70" },
               { name: "Sproutify Micro", tagline: "Strategy, not just spreadsheets.", desc: "Tray management, seed inventory, order workflows, and Sage-powered daily strategy for microgreen farmers serving restaurants and markets.", tags: ["Coming soon", "Microgreens"], href: "https://www.sproutify.app/sproutify-micro.html", bg: "bg-paper", text: "text-ink", label: "text-accent", tagBg: "bg-ink/5", tagText: "text-ink/60", border: "border border-ink/10" },
-              { name: "Sproutify School", tagline: "Aeroponic learning, for the classroom.", desc: "Classroom-friendly tools for teachers running Tower Garden programs — student-safe interfaces, curriculum integration, and progress tracking.", tags: ["Web", "K–12"], href: "https://school.sproutify.app/", bg: "bg-growth", text: "text-ink", label: "text-accent", tagBg: "bg-ink/8", tagText: "text-ink/70" },
+              { name: "Sproutify School", tagline: "Aeroponic learning for the classroom.", desc: "Classroom-friendly tools for teachers running aeroponic programs — student-safe interfaces, curriculum integration, and progress tracking.", tags: ["Web", "K–12"], href: "https://school.sproutify.app/", bg: "bg-growth", text: "text-ink", label: "text-accent", tagBg: "bg-ink/8", tagText: "text-ink/70" },
             ].map((p, i) => (
               <a key={i} href={p.href} target="_blank" rel="noopener noreferrer" className={`block ${p.bg} ${p.text} ${p.border || ''} p-8 md:p-10 rounded-[2rem] group hover:scale-[1.01] transition-transform duration-300`}>
                 <div className="flex justify-between items-start mb-6">
@@ -654,10 +715,6 @@ export default function App() {
                 </div>
               ))}
 
-              <div className="bg-growth/10 rounded-[1.5rem] p-8 mt-8 text-center">
-                <p className="font-serif italic text-lg leading-relaxed text-ink/70">"To forget how to dig the earth and tend the soil is to forget ourselves."</p>
-                <p className="font-mono text-[8px] uppercase tracking-[0.3em] opacity-40 mt-3">— Mahatma Gandhi</p>
-              </div>
             </div>
 
             {/* RIGHT COLUMN — Form + info cards */}
