@@ -207,7 +207,7 @@ export default function App() {
           <img
             src="/images/sweetwater-logo.png"
             alt="Sweetwater Urban Farms"
-            className={`h-9 md:h-10 w-auto transition-all duration-300 group-hover:scale-105 ${scrolled ? '' : 'brightness-0 invert'}`}
+            className={`h-12 md:h-14 w-auto transition-all duration-300 group-hover:scale-105 ${scrolled ? '' : 'brightness-0 invert'}`}
           />
         </motion.a>
 
@@ -793,18 +793,18 @@ export default function App() {
 
               <div className="grid grid-cols-2 gap-3 mt-4">
                 <div className="bg-paper border border-ink/5 rounded-[1.5rem] p-6">
-                  <div className="w-9 h-9 rounded-full bg-accent/8 flex items-center justify-center mb-3">
-                    <Mail size={15} className="text-accent" />
+                  <div className="w-11 h-11 rounded-full bg-accent/8 flex items-center justify-center mb-4">
+                    <Mail size={18} className="text-accent" />
                   </div>
-                  <p className="font-mono text-[8px] uppercase tracking-[0.25em] opacity-40 mb-1">Email</p>
-                  <a href="mailto:info@sweetwaterurbanfarms.com" className="font-serif italic text-sm text-accent break-words">info@sweetwaterurbanfarms.com</a>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.25em] opacity-60 mb-2">Email</p>
+                  <a href="mailto:info@sweetwaterurbanfarms.com" className="font-serif italic text-base md:text-lg text-accent break-words">info@sweetwaterurbanfarms.com</a>
                 </div>
                 <div className="bg-paper border border-ink/5 rounded-[1.5rem] p-6">
-                  <div className="w-9 h-9 rounded-full bg-growth/30 flex items-center justify-center mb-3">
-                    <Clock size={15} className="text-accent" />
+                  <div className="w-11 h-11 rounded-full bg-growth/30 flex items-center justify-center mb-4">
+                    <Clock size={18} className="text-accent" />
                   </div>
-                  <p className="font-mono text-[8px] uppercase tracking-[0.25em] opacity-40 mb-1">Response</p>
-                  <p className="font-serif italic text-sm">Under 48 hours</p>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.25em] opacity-60 mb-2">Response</p>
+                  <p className="font-serif italic text-base md:text-lg">Under 48 hours</p>
                 </div>
               </div>
             </div>
