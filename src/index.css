@@ -45,3 +45,27 @@
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
+
+.technology-section {
+  background: radial-gradient(ellipse at top left, #182951 0%, #0c1322 60%);
+  color: #fff;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+.technology-section :is(a, button, input, [tabindex]):focus-visible {
+  outline: 2px solid #91b0ff;
+  outline-offset: 4px;
+}
+
+.technology-section .sage-choice {
+  min-height: 44px;
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.technology-section button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

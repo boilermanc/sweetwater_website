@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { TechnologySection } from './components/TechnologySection';
 import {
   Leaf,
   ArrowRight,
@@ -48,7 +49,7 @@ function PrivacyContent() {
     <article className="pt-40 pb-32 px-8 max-w-3xl mx-auto">
       <span className="font-mono text-[10px] uppercase tracking-[0.5em] opacity-40 mb-6 block">Legal</span>
       <h1 className="text-5xl md:text-6xl font-serif mb-4 leading-none">Privacy <span className="italic text-growth">Policy.</span></h1>
-      <p className="font-mono text-[10px] uppercase tracking-widest opacity-40 mb-16">Last updated: May 26, 2026</p>
+      <p className="font-mono text-[10px] uppercase tracking-widest opacity-40 mb-16">Last updated: September 29, 2026</p>
 
       <div className="space-y-12 font-body text-base leading-relaxed text-ink/80">
         <p>Sweetwater Urban Farms ("we," "us," "our") operates sweetwaterurbanfarms.com (the "Site"). This page explains what information we collect and how we use it.</p>
@@ -65,6 +66,12 @@ function PrivacyContent() {
           <p className="mt-4">Form submissions are processed through our workflow automation tool (n8n, self-hosted) and delivered to our team via email (Resend) and Slack. These services receive your message in transit but do not use your information for their own purposes.</p>
         </section>
 
+        <section>
+          <h2 className="text-2xl font-serif italic mb-4 text-ink">Sweetwater Technology and Sage</h2>
+          <p>The optional Sage AI chat collects your project description, conversation, name, and email address for Sweetwater Technology to respond to your inquiry. Messages are processed through its n8n chat workflow and AI service; lead details are sent to its lead-management system and team notifications.</p>
+          <p className="mt-4">Email recaps and marketing updates are separate, optional choices. Declining them does not prevent you from discussing your project. Sage uses browser session storage for a random conversation identifier, and includes the Sweetwater Urban Farms source with requests. We do not store your chat or contact details in browser storage.</p>
+          <p className="mt-4">To ask about or request deletion of information shared with Sweetwater Technology, email <a href="mailto:clint@sweetwater.technology" className="text-accent underline underline-offset-4">clint@sweetwater.technology</a>.</p>
+        </section>
         <section>
           <h2 className="text-2xl font-serif italic mb-4 text-ink">Your rights</h2>
           <p>You can request that we delete information you've submitted by emailing us at <a href="mailto:info@sweetwaterurbanfarms.com" className="text-accent underline underline-offset-4 decoration-accent/30">info@sweetwaterurbanfarms.com</a>. We'll respond within a reasonable timeframe.</p>
@@ -811,6 +818,7 @@ export default function App() {
           </div>
         </div>
       </section>
+      <TechnologySection />
        </>}
 
       {/* Footer */}
